@@ -35,7 +35,7 @@
 
 /* ------------------------------ Body Container -------------------------  */
 	.body-container{
-		margin:30px 80px;
+		margin:10px 80px;
 		/*margin-bottom: 30px;*/
 		background: white;
 		border-radius: 5px;
@@ -176,7 +176,7 @@
 }
 
 .font-why{
-	font-size: 45px;
+	font-size: 35px;
 	font-weight: bold;
 	font-family: Impact, Arial;
 	color: orange;
