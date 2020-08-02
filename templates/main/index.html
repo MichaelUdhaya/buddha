@@ -1,0 +1,206 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+  {% block title %}
+      Home
+  {% endblock %}
+<!-- End of Title Name -->
+
+<!-- Navigation activae link -->
+  {% block nav-home %}
+    nav-active
+  {% endblock %}
+<!-- End of Navigation activae link -->
+
+{% block body %}
+<!-- Body Start -->
+  <div class="body-container">
+    <!-- Alert Messages -->
+      {% include 'reusable/messages.html' %}
+    <!-- End of Alert Messages -->
+
+    <!-- Slideshow container -->
+      <div id="adCarousel" class="carousel slide carousel-box" data-ride="carousel">
+        {% if ads %}
+          <!-- Indicators -->
+            <ol class="carousel-indicators">
+              {% for ad in ads %}
+                {% if forloop.counter0 == 0 %}
+                  <li data-target="#adCarousel" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+                {% else %}
+                  <li data-target="#adCarousel" data-slide-to="{{ forloop.counter0 }}"></li>
+                {% endif %}
+              {% endfor %}
+            </ol>
+          <!-- End of Indicators -->
+
+          <!-- The slideshow -->
+            <div class="carousel-inner">
+              {% for ad in ads %}
+                {% if forloop.counter0 == 0 %}
+                  <div class="carousel-item active">
+                    <img src="{{ ad.ad_photo.url }}" alt="{{ ad.ad_name }}" width=100%>
+                  </div>
+                {% else %}
+                  <div class="carousel-item">
+                    <img src="{{ ad.ad_photo.url }}" alt="{{ ad.ad_name }}" width=100%>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          <!-- End of Slideshow -->
+
+          <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#adCarousel" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#adCarousel" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+          <!-- End of Left and right controls -->
+        {% else %}
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="{% static 'main/images/Slide images/no-post.png' %}" alt="No Post" width="1100" height="500">
+              </div>
+            </div>
+        {% endif %}
+      </div>
+    <!-- End of Slideshow container -->
+
+    <!-- body content -->
+      <div class="row">
+        <!-- SideBar start -->
+          <div class="col-sm-4">
+              <!-- Post box -->
+                <div class="post-box">
+                  <span class="post-box-header">Recent Post</span>
+                  {% if post_lists%}
+                    <ul style="font-size: 18px;" type="square">
+                      {% for post in post_lists %}
+                        <li><a href="{% url 'main:url_post' pk=post.pk %}">{{ post.post_title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  {% else %}
+                    <ul style="font-size: 18px;" type="square">
+                      <li>No Posts available</li>
+                    </ul>
+                  {% endif %}
+                </div>
+              <!-- End of Post box -->
+              <br>
+
+              <!-- collapse bar -->
+                <div class="post-box">
+                  <span class="post-box-header">Usefull Links</span>
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="https://www.tntextbooks.in/p/school-books.html" target="_blank">Online Text Books</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="http://www.tnscert.org/tnscert/ebooks/" target="_blank">Ebooks</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="https://www.tn.gov.in/department/28" target="_blank">Education Department</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="http://tnschools.gov.in/" target="_blank">பள்ளிக்கல்வித் துறை</a>
+                    </li>
+                  </ul>
+                </div>
+              <!-- End of collapse bar -->
+              <br>
+              
+              <!-- <div class="post-box">
+                <p class="post-box-header">Social Links</p>
+                <div style="margin:15px 30px;">
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-twitter"></a>
+                <a href="#" class="fa fa-google"></a>
+                </div>
+              </div> -->
+              <!-- Social Links -->
+                <div class="post-box">
+                  <p class="post-box-header">Social Links</p>
+                  <div style="margin:15px 30px;">
+                    <!-- Facebook -->
+                     <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2Fbuddhaeducator%2F&width=141&layout=button_count&action=like&size=large&share=true&height=46&appId" width=100% height="50" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                    <!-- End of Facebook -->
+                    <br>
+                    <!-- Youtube -->
+                      <!-- <script src="https://apis.google.com/js/platform.js"></script> -->
+                      <!--  <div class="g-ytsubscribe" data-channel="michaeludhaya" data-layout="default" data-count="default"></div> -->
+                     <!--  <div class="g-ytsubscribe" data-channel="buddhaonlineacademy" data-layout="full" data-count="default"></div> -->
+                    <!-- End of Youtube -->
+                  </div>
+                </div>
+              <!-- End of Social Links -->
+          </div>
+        <!-- End of SideBar -->
+
+        <!-- main start -->
+          <div class="col-sm-8">
+            <div class="flip-box">
+              <div class="flip-box-inner">
+                <div class="flip-box-front">
+                    <!-- <img align="right" src="{% static 'main/images/index/edu.png' %}" width="170" height="160"> -->
+                    <p class="font-why">Why Choose Us?</p>
+                </div>
+                <div class="flip-box-back">
+                  <p>We're providing quality courses and best questions for prepare exam.</p>
+                </div>
+              </div>
+            </div>
+
+            <a href="{% url 'main:url_post_list' %}"><span class="post-box-header text-right">Annoncement</span></a>
+              {% if post %}
+                {% for p in post %}
+                <div class="blog-class">
+                  <h1 class="blog-tilte">{{ p.post_title }}</h1>
+                  <span class="badge badge-primary" style="padding: 5px;">{{ p.post_published }}</span>
+                  <div class="blog-body">
+                    <p>{{p.post_content|safe}}</p>
+                  </div>
+                    <a href="{% url 'main:url_post' pk=p.pk %}" class="btn btn-info">Open Post</a>
+                </div>
+                {% endfor %}
+              {% else %}
+                <h3 align="center" style="font-size: 23px; font-weight: bold; color: orange; font-style: italic;">No Annoncement posted!</h3>
+              {% endif %}
+              <br>  
+              <!-- Circular -->
+              <div class="class-box" data-toggle="collapse" data-target="#Courses">
+                <h6>Courses <span class="badge">
+                <img src="{% static 'main/images/gif/new.gif' %}"></span></h6>
+              </div>
+              <div id="Courses" class="collapse" style="padding: 15px;">
+                There are no course available!
+              </div>
+              <!-- End of Circular -->
+
+              <div class="class-box" data-toggle="collapse" data-target="#event">
+                <h6>Upcoming Events</h6>
+              </div>
+
+              <div id="event" class="collapse" style="padding: 15px;">
+                There are no upcoming events
+              </div>
+
+          </div>
+        <!-- End of main -->
+      </div>
+    <!-- End of body content -->
+
+    {% include 'main/includes/footer.html' %}
+  </div>
+<!-- End of Body -->
+
+
+<script>
+  // Index Page 
+    // No scripts
+  // End of Index page
+</script>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+ {% extends 'admin/base.html' %}
+
+{% load static %}
+
+{% block branding %}
+	<h1 id="head">
+	<img src="{% static 'main/images/icons/buddha-icon.png' %}" class="brand_img" height="50" width="50">  Buddha Admin</h1>
+{% endblock %}
+
+{% block extrastyle %}
+	<link rel="stylesheet" type="text/css" href="{% static 'admin/css/custom-style.css' %}">
+{% endblock %}

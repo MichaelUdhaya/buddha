@@ -1,0 +1,76 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+{% block title %}
+  Feedback
+{% endblock %}
+<!-- End of Title Name -->
+
+{% block body %}
+
+<!-- Body Start -->
+  <div class="container body-container">
+
+    <!-- body content -->
+
+      <div class="feedback-container">
+        <div style="text-align:center">
+          <h2>Feedback about Our Course</h2>
+          <p>Provide your valuable feedback about our course meterial. What we've to improve and and what needs to be change.</p>
+        </div>
+        <!-- Alert Messages -->
+          {% include 'reusable/messages.html' %}
+        <!-- End of Alert Messages -->
+        <br>
+        <div class="feedback-row">
+          <div class="feedback-column">
+            <!-- Breadcrumbs -->
+              <ul class="breadcrumb">
+                <li><a href="{% url 'main:url_home' %}">Home</a></li>
+                <li>Feedback</li>
+              </ul>
+            <!-- End of Breadcrumbs -->
+            <img src="{% static 'main/images/backgrounds/feedback.jpg' %}" style="width:100%">
+          </div>
+
+          <div class="feedback-column">
+            <form action="{% url 'main:url_feedback' %}" method="POST">
+              {% csrf_token %}
+              <label for="fullname">Full Name :</label>
+              <input type="text" id="fullname" name="fullname" placeholder="Enter Your name.." class="feedback-input" required>
+
+              <label for="email">Email :</label>
+              <input type="text" id="email" name="email" placeholder="Enter Your Email.." class="feedback-input" required>
+              
+              <label for="rating">Your rating for our courses</label>
+              <select id="rating" name="rating" class="feedback-select" required>
+                {% for key, value in FEEDBACK_RATING.items %}
+                  <option value="{{ key }}" 
+                    {% if key == values.rating %}
+                      selected
+                    {% endif %} 
+                  >{{ value }}</option>
+                {% endfor %}
+              </select>
+
+              <label for="feedback">Messages :</label>
+              <textarea id="feedback" name="feedback" placeholder="Write your feedback here.." style="height:170px" class="feedback-textarea" required></textarea>
+
+              <button type="submit" value="Submit" class="btn btn-danger">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    <!-- End of body content -->
+
+    <!-- Footer Start-->
+      {% include 'main/includes/footer.html' %}
+    <!-- End of Footer -->
+  </div>
+<!-- End of Body -->
+
+{% endblock %}
+
+

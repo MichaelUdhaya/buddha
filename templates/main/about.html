@@ -1,0 +1,69 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+  {% block title %}
+      Home
+  {% endblock %}
+<!-- End of Title Name -->
+
+<!-- Navigation activae link -->
+  {% block nav-about-us %}
+    nav-active
+  {% endblock %}
+<!-- End of Navigation activae link -->
+
+{% block body %}
+<!-- Body Start -->
+  <div class="container body-container">
+    <!-- Page Header -->
+      <div class="page-header-box-left">
+        About Us
+      </div>
+    <!-- End of Page Header -->
+
+    <!-- body content -->
+        <img src="{% static 'main/images/About/about-main.JPG' %}" height="300px" class="admission-image">
+        <br>
+        <br>
+
+        <h5 class="admission-header">Institute Since</h5>
+        <div class="container">
+          Our Institutue was running since 20xx. We completed our xx Years successfullly.
+        </div>
+        <br>
+
+        <h5 class="admission-header">Our Goals</h5>
+        <div class="container">
+          <ul style="list-style-type: square;">
+            <li>Provide a Quality Education</li>
+            <li>Provide a updated question papers</li>
+          </ul>
+        </div>
+        <br>
+
+        <h5 class="admission-header">Awards and Recognize</h5>
+        <div class="container">
+          <ul>
+            <li><strong>Fast growing Instititue of chennai</strong> on 20xx from <i>xxxx</i></li>
+            <li><strong>Quality of question  papers</strong> on 20xx from <i>TamilNadu Govt</i></li>
+          </ul>
+        </div>
+        <br>
+
+    <!-- End of body content -->
+
+    <!-- Footer Start-->
+      {% include 'main/includes/footer.html' %}
+    <!-- End of Footer -->
+  </div>
+<!-- End of Body -->
+
+
+<script>
+  // Index Page 
+    // No scripts
+  // End of Index page
+</script>
+
+{% endblock %}

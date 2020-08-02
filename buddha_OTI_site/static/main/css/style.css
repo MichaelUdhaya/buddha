@@ -1,0 +1,653 @@
+{%load static %}
+/* ------------------------------ Body Style -------------------------  */
+
+	body{
+		
+	}
+/* ------------------------------ End of Body Style -------------------------  */
+
+/* ------------------------------ Page Header -------------------------  */
+	.page-header-box-left{
+		background-image: linear-gradient(to left, #fff, #8B0000);
+		overflow: hidden;
+		border: 1px solid #ccc;
+		background-color: #8B0000;
+		margin-bottom: 25px;
+		padding: 14px 16px;
+		font-size: 17px;
+		font-weight: bold;
+		color: white;
+	}
+	.page-header-box-right{
+		background-image: linear-gradient(to right, #fff, #8B0000);
+		overflow: hidden;
+		text-align: right;
+		border: 1px solid #ccc;
+		background-color: #8B0000;
+		margin-bottom: 25px;
+		padding: 14px 16px;
+		font-size: 17px;
+		font-weight: bold;
+		color: white;
+	}
+
+/* ------------------------------ End of Page Header -------------------------  */
+
+/* ------------------------------ Body Container -------------------------  */
+	.body-container{
+		margin:30px 80px;
+		/*margin-bottom: 30px;*/
+		background: white;
+		border-radius: 5px;
+		padding: 30px;
+		
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	}
+/* ------------------------------ End of Body Container -------------------------  */
+
+/*------------------------------- carousel images -------------------------  */
+	  .carousel-inner img {
+	    width: 100%;
+	    border-radius: 2px;
+	  }
+	  .carousel-box{
+	  	border: 1px solid #8B0000;
+	  	padding: 0px;
+	  	border-radius: 2px;
+	  	margin-bottom: 30px;
+	  	box-shadow: 5px 5px 2px #c36464;
+	  }
+/*------------------------------- End of  carousel images -------------------------  */
+
+/*------------------------------- post box -------------------------  */
+	.post-box{
+		padding: 20px;
+		display: block;
+		/*border: 1px solid #8B0000;*/
+		/*background-color: grey; color: black;*/
+		border-radius: 0px;
+		/*background: url({% static 'main/images/backgrounds/box-bg.png' %});*/
+		box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		box-shadow: 1px 2px 8px 1px #8B0000;
+		border-radius: 10px;
+		width: 100%;
+	}
+
+	.post-box-header{
+		/*border-bottom: 2px solid #8B0000;*/
+		padding-bottom: 10px;
+		text-align: left;
+		display: block;
+		font-weight: bold;
+		font-size: 18px;
+		margin-bottom: 10px;
+		text-decoration: underline;
+		color: orange;
+	}
+
+	/*breadcrumbs*/
+	ul.breadcrumb {
+	  padding: 10px 16px;
+	  list-style: none;
+	  background-color: #ccc;
+	}
+	ul.breadcrumb li {
+	  display: inline;
+	  font-size: 18px;
+	}
+	ul.breadcrumb li+li:before {
+	  padding: 8px;
+	  color: black;
+	  content: "/\00a0";
+	}
+	ul.breadcrumb li a {
+	  color: #0275d8;
+	  text-decoration: none;
+	}
+	ul.breadcrumbseadcrumb li a:hover {
+	  color: #01447e;
+	  text-decoration: underline;
+	}
+
+/*------------------------------- End of Box post box -------------------------  */
+
+/*Flip Box*/
+
+
+.flip-box {
+  background-color: transparent;
+  width: 100%;
+  height: 200px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+  margin: 10px 2px;
+}
+
+.flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-inner {
+  transform: rotateX(180deg);
+}
+
+.flip-box-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background-image: url('../images/index/edu.png');
+  background-position: 10px 10px;
+  background-size: 250px; 
+  background-repeat: no-repeat;
+
+}
+
+.flip-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-box-front {
+  background-color: floaralwhite;
+  color: black;
+  /*text-align: center;*/
+  padding: 30px;
+  border: 1px solid orange;
+}
+
+.flip-box-back {
+  background-color: orange;
+  color: white;
+  font-size: 16px;
+  font-family: Times New Roman;
+  text-align: center;
+  padding: 50px;
+  transform: rotateX(180deg);
+}
+
+.font-why{
+	font-size: 45px;
+	font-weight: bold;
+	font-family: Impact, Arial;
+	color: orange;
+	text-shadow: 5px 5px 10px black;
+	/*text-align: left;*/
+}
+
+/*End of Flip box*/
+
+
+
+
+/*------------------------------- blog post -------------------------  */
+
+	.blog-class{
+		border-left: 5px solid #8B0000;
+		border-right: 5px solid #8B0000;
+		border-radius: 10px;
+		background-color: lavender;
+		padding: 10px 10px 10px 20px;
+		margin: 20px 0px;
+	}
+
+	.blog-body{
+		margin: 20px 10px;
+		border-radius: 5px;
+		border: 1px solid #8B0000;
+		padding: 5px 10px;
+		background-color: #f8f9fa;
+		font-family: Courier New, Fixedsys;
+		overflow: scroll;
+		height: 150px;
+	}
+
+	.blog-tilte{
+		text-transform: capitalize;
+	}
+/*------------------------------- End of blog post -------------------------  */
+
+/*------------------------------- Class Box -------------------------  */
+
+	.class-box{
+		padding: 10px;
+		margin: 10px 0px;
+		border-top: 2px solid #8b0000;
+		/*min-height: 100px;
+		min-width: 100px;*/
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		cursor: pointer;
+	}
+
+/*------------------------------- End of Class Box -------------------------  */
+
+
+/*------------------------------- page header -------------------------  */
+	.page-header{
+		padding: 10px;
+		padding-left: 20px;
+		background-color: #8B0000;
+		margin-bottom: 30px;
+		color: inherit;
+		text-shadow: center;
+		background-image: linear-gradient(to right, #fff, #8B0000)
+	}
+/*------------------------------- End of footer page-header -------------------------  */
+
+/*------------------------------- footer box -------------------------  */
+
+	.footer{
+		padding: 10px;
+		background-color: #8B0000;
+		margin-top: 30px;
+		color: white;
+	}
+/*------------------------------- End of footer box -------------------------  */
+
+/*------------------------------- social icon -------------------------  */
+	.fa {
+	  padding: 20px;
+	  font-size: 30px;
+	  text-align: center;
+	  text-decoration: none;
+	  margin: 0px 5px;
+	}
+	/* Add a hover effect if you want */
+	.fa:hover {
+	  opacity: 0.7;
+	  text-decoration: none;
+	  color: white;
+	}
+
+	.fa-facebook {
+	  background: #3B5998;
+	  color: white;
+	}
+
+	.fa-twitter {
+	  background: #55ACEE;
+	  color: white;
+	}
+
+	.fa-google {
+	  background: #dd4b39;
+	  color: white;
+	}
+
+	.fa-instagram {
+	  background: #125688;
+	  color: white;
+	}
+/*------------------------------- End of social icon -------------------------  */
+
+/*------------------------------- Navbar -------------------------  */
+	.my-nav{
+		background-color: #8B0000;
+	}
+
+	.my-nav a{
+		color: white;
+		margin: 0px 10px;
+	}
+
+	.my-nav a:hover{
+		color: grey;
+		border-bottom: 1px solid white;
+	}
+
+	.my-nav .nav-active{
+		font-weight: bold;
+		border: 1px solid white;
+	}
+/*------------------------------- End of Navbar -------------------------  */
+
+/*------------------------------- image facilities -------------------------  */
+	.img-about {
+	  position: relative;
+	  max-width: 100%;
+	  margin: 0 auto;
+	  height: 100%;
+	}
+
+	.img-about img {
+		vertical-align: middle;
+		height: 100%;
+	}
+
+	.img-about .content {
+	  position: absolute;
+	  bottom: 0;
+	  background: rgb(0, 0, 0); /* Fallback color */
+	  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+	  color: #f1f1f1;
+	  width: 100%;
+	  height: 50%;
+	  padding: 10px;
+	}
+/*------------------------------- End of image facilities -------------------------  */
+
+/*------------------------------- Content images -------------------------  */
+	.img-facility-content{
+		border-radius: 10px;
+		width: 100%;
+		height: 100%;
+	}
+
+	.facility-header-right{
+		margin-bottom: 10px;
+		border-bottom: 2px solid #8B0000;
+		padding: 0px 10px 10px 0px;
+	}
+
+	.facility-header-left{
+		margin-bottom: 10px;
+		border-bottom: 2px solid #8B0000;
+		padding: 0px 0px 0px 10px;
+	}
+/*------------------------------- End of Content images -------------------------  */
+
+/*------------------------------- Admission -------------------------  */
+	.admission-image{
+		width:100%;
+	}
+
+	.admission-accordion {
+	  background-color: #eee;
+	  color: #444;
+	  cursor: pointer;
+	  padding: 18px;
+	  width: 100%;
+	  border: 1px solid #8B0000;
+	  text-align: left;
+	  outline: none;
+	  font-size: 15px;
+	  transition: 0.4s;
+	  display: block;
+	}
+
+	.admission-active, .admission-accordion:hover {
+	  background-color: #8B0000; 
+	  color: white;
+	}
+
+	.admission-accordion:after {
+	  content: '\002B';
+	  color: #777;
+	  font-weight: bold;
+	  float: right;
+	  margin-left: 5px;
+	}
+
+	.admission-active:after {
+	  content: "\2212";
+	}
+
+	.admission-panel {
+	  padding: 0 18px;
+	  background-color: white;
+	  max-height: 0;
+	  overflow: hidden;
+	  margin-top: 5px;
+	  transition: max-height 0.3s ease-out;
+	}
+
+	.admission-header{
+		padding: 0px 0px 10px 10px;
+		border-bottom: 2px solid #8B0000;
+		margin-bottom: 25px;
+	}
+
+/*------------------------------- End of Admission -------------------------  */
+
+/*------------------------------- Policies and Staff Page -------------------------  */
+
+	/*------------------------------- Horizontal Tab -------------------------  */
+		.tab {
+		  overflow: hidden;
+		  border: 1px solid #8B0000;
+		  background-color: #f1f1f1;
+		}
+
+		/* Style the buttons inside the tab */
+		.tab button {
+		  background-color: inherit;
+		  float: left;
+		  border: none;
+		  outline: none;
+		  cursor: pointer;
+		  padding: 14px 16px;
+		  transition: 0.3s;
+		  font-size: 17px;
+		}
+
+		/* Tab Head */
+		.tab {
+		  padding: 14px 16px;
+		  font-size: 18px;
+		  font-weight: bold;
+		  color: #8B0000;
+		}
+
+		/* Change background color of buttons on hover */
+		.tab button:hover {
+		  background-color: #ddd;
+		}
+
+		/* Create an active/current tablink class */
+		.tab button.active {
+		  background-color: #ccc;
+		}
+
+		/* Style the tab content */
+		.tabcontent {
+		  display: block;
+		  padding: 12px 12px;
+		  -webkit-animation: fadeEffect 1s;
+		  animation: fadeEffect 2s;
+		  border: 1px solid #8B0000;
+  		  border-top: none;
+		}
+
+		/* Fade in tabs */
+		@-webkit-keyframes fadeEffect {
+		  from {opacity: 0;}
+		  to {opacity: 1;}
+		}
+
+		@keyframes fadeEffect {
+		  from {opacity: 0;}
+		  to {opacity: 1;}
+		}
+	/*------------------------------- End of horizontal Vertical Tab -------------------------  */
+
+	/*------------------------------- Table Filter -------------------------------  */
+
+		#staff-Input {
+		  background-image: url('../images/icons/searchicon.png');
+		  background-position: 10px 10px;
+		  background-repeat: no-repeat;
+		  padding: 12px 20px 12px 40px;
+		 
+		}
+
+		#staff-Table {
+		  border-collapse: collapse;
+		  width: 100%;
+		  border: 1px solid #ddd;
+		  font-size: 18px;
+		}
+
+		#staff-Table th, #staff-Table td {
+		  text-align: left;
+		  padding: 12px;
+		}
+
+		#staff-Table tr {
+		  border-bottom: 1px solid #ddd;
+		}
+
+		#staff-Table tr.header, #staff-Table tr:hover {
+		  background-color: #f1f1f1;
+		}
+	/*------------------------------- End of Table Filter -------------------------------  */
+
+/*------------------------------- End of Policies and Staff Page -------------------------  */
+
+/*------------------------------- Gallery Page-------------------------  */
+	/*---------------------- Main gallery /*----------------------*/
+		.gallery-img {
+		  vertical-align: middle;
+		}
+
+		/* Position the image container (needed to position the left and right arrows) */
+		.gallery-container {
+		  position: relative;
+		}
+
+		/* Hide the images by default */
+		.gallery-mySlides {
+		  display: none;
+		}
+
+		/* Add a pointer when hovering over the thumbnail images */
+		.gallery-cursor {
+		  cursor: pointer;
+		}
+
+		/* Next & previous buttons */
+		.prev,
+		.next {
+		  cursor: pointer;
+		  position: absolute;
+		  top: 40%;
+		  width: auto;
+		  padding: 16px;
+		  margin-top: -50px;
+		  color: white;
+		  font-weight: bold;
+		  font-size: 20px;
+		  border-radius: 0 3px 3px 0;
+		  user-select: none;
+		  -webkit-user-select: none;
+		}
+
+		/* Position the "next button" to the right */
+		.next {
+		  right: 0;
+		  border-radius: 3px 0 0 3px;
+		}
+
+		/* On hover, add a black background color with a little bit see-through */
+		.prev:hover,
+		.next:hover {
+		  background-color: rgba(0, 0, 0, 0.8);
+		}
+
+		/* Number text (1/3 etc) */
+		.numbertext {
+		  color: #f2f2f2;
+		  font-size: 12px;
+		  padding: 8px 12px;
+		  position: absolute;
+		  top: 0;
+		}
+
+		/* Container for image text */
+		.caption-container {
+		  text-align: center;
+		  background-color: #222;
+		  padding: 2px 16px;
+		  color: white;
+		}
+
+		.gallery-row:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+
+		/* Six columns side by side */
+		.gallery-column {
+		  float: left;
+		  width: 16.66%;
+		}
+
+		/* Add a transparency effect for thumnbail images */
+		.demo {
+		  opacity: 0.6;
+		}
+
+		.gallery-active,
+		.demo:hover {
+		  opacity: 1;
+		}
+	/*----------------------End of Main gallery ----------------------*/
+
+	/*---------------------- Overlay ----------------------*/
+		
+	/*---------------------- End of Overlay ----------------------*/
+/*------------------------------- End of Gallery Pagee -------------------------  */
+
+/*------------------------------- Feedback -------------------------  */
+	.feedback-input, .feedback-select, .feedback-textarea {
+	  width: 100%;
+	  padding: 8px;
+	  border: 1px solid #ccc;
+	  margin-top: 6px;
+	  margin-bottom: 16px;
+	  resize: vertical;
+	}
+
+	.feedback-submit {
+	  background-color: #4CAF50;
+	  color: white;
+	  padding: 12px 20px;
+	  border: none;
+	  cursor: pointer;
+	}
+
+	.feedback-submit:hover {
+	  background-color: #45a049;
+	}
+
+	/* Style the container/contact section */
+	.feedback-container {
+	  border-radius: 5px;
+	  background-color: #f2f2f2;
+	  padding: 10px;
+	}
+
+	/* Create two columns that float next to eachother */
+	.feedback-column {
+	  float: left;
+	  width: 50%;
+	  margin-top: 6px;
+	  padding: 20px;
+	}
+
+	/* Clear floats after the columns */
+	.feedback-row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+
+	/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+	@media screen and (max-width: 600px) {
+	  .feedback-column, input[type=submit] {
+	    width: 100%;
+	    margin-top: 0;
+	  }
+	}
+
+/*------------------------------- End of Feedback -------------------------  */
+

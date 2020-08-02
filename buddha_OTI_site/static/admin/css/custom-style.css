@@ -1,0 +1,41 @@
+#header{
+	background-color: #8B0000;
+	color: #fff;
+	height: 60px;
+}
+
+#branding h1{
+	color: #fff;
+}
+
+a:link, a:visited{
+	color: #8B0000;
+}
+
+div.breadcrumbs{
+	background: #da7a7a;
+	color: white;
+}
+
+.module h2, .module caption, .inline-group h2 {
+	background: #8B0000;
+	padding: 10px;
+}
+
+/*submit buttons*/
+.button, input[type=submit], input[type=button], .submit-row input, a.button{
+	background: #8B0000;
+}
+
+.button.default, input[type=submit].default, .submit-row input.default{
+	background: #8B0000;
+}
+
+input[type=submit]:hover, input[type=button]:hover, input[type=submit].default:hover{
+	background: #e29a9a;
+}
+
+.selector-chosen h2 {
+    background: #8B0000;
+    color: #fff;
+}

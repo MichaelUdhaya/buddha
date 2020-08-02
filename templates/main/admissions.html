@@ -1,0 +1,182 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+{% block title %}
+    Admissions
+{% endblock %}
+<!-- End of Title Name -->
+
+<!-- Navigation activae link -->
+{% block nav-admissions %}
+  nav-active
+{% endblock %}
+<!-- End of Navigation activae link -->
+
+{% block body %}
+
+<!-- Body Start -->
+  <div class="container body-container">
+
+    <!-- Page Header -->
+      <div class="page-header-box-left">
+        Admissions
+      </div>
+    <!-- End of Page Header -->
+
+    <!-- body content -->
+        <img src="{% static 'main/images/Admissions/admission.png' %}" class="admission-image">
+        <br>
+        <br>
+
+        <!-- <h3 class="admission-header">Admissions Details</h3> -->
+
+        <button class="admission-accordion">தமிழ் வழி கல்வி</button>
+        <div class="admission-panel">
+          <div class="table-responsive" style="margin-top: 15px;">
+            <table class="table table-hover table-striped table-bordered text-center">
+              <thead class="thead-dark">
+              <tr>
+                <th>குறியீடு</th>
+                <th>பிரிவு</th>
+                <th>பாடங்கள்</th>
+              </tr>
+            </thead>
+              <tr>
+                <td class="table-success" colspan="3">மேல் நிலை பள்ளி</td>
+              </tr>
+              <tr>
+                <td>A1</td>
+                <td>கணினி அறிவியல்</td>
+                <td>கணிதம், இயற்பியல், வேதியல், கணினி அறிவியல்</td>
+              </tr>
+              <tr>
+                <td>B1</td>
+                <td>உயிரியல்</td>
+                <td>கணிதம், இயற்பியல், வேதியல், உயிரியல்</td>
+              </tr>
+              <tr>
+                <td>C1</td>
+                <td>வர்த்தகம்</td>
+                <td>பொருளாதாரம், வர்த்தகம்</td>
+              </tr>
+              <tr>
+                <td class="table-success" colspan="3" class="table-active">உயர்நிலை பள்ளி</td>
+              </tr>
+              <tr>
+                <td>-</td>
+                <td>சமச்சீர் கல்வி</td>
+                <td>தமிழ், ஆங்கிலம், கணிதம், அறிவியில், சமூக அறிவியல்</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <br>
+        
+        <button class="admission-accordion">English Medium</button>
+        <div class="admission-panel">
+          <div class="table-responsive" style="margin-top: 15px;">
+            <table class="table table-hover table-striped table-bordered text-center">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Code of Group</th>
+                  <th>Name of Group</th>
+                  <th>Subjects</th>
+                </tr>
+              </thead>
+              <tr>
+                <td class="text-center table-info" colspan="3">Higher Secondary School</td>
+              </tr>
+              <tr>
+                <td>A2</td>
+                <td>Computer Science</td>
+                <td>Maths, Physics, Chemistry, Computer Science</td>
+              </tr>
+              <tr>
+                <td>B2</td>
+                <td>Biology</td>
+                <td>Maths, Physics, Chemistry, Biology</td>
+              </tr>
+              <tr>
+                <td>C2</td>
+                <td>Commerce</td>
+                <td>Maths, Physics, Chemistry, Commerce</td>
+              </tr>
+              <tr>
+                <td class="table-info" colspan="3">High School</td>
+              </tr>
+              <tr>
+                <td>-</td>
+                <td>Samachir Kalvi</td>
+                <td>Thamizh, English, Maths, Science, Social Science</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="card" style="border: 1px dotted #8B0000; padding: 20px; margin-bottom: 15px;">
+          <h5 class="text-danger">Common Subjects</h5>
+          <p style="padding: 10px;" class="text-danger">
+            <b>தமிழ்</b> and <b>English</b> is the must subjects for both Tamil/English mediums.
+          </p>
+        </div>
+        <!-- Qulifications -->
+        <h5>Eligibility for Admission</h5>
+        <p style="padding: 10px;">
+          For apply to +1, student must be passed in S.S.L.C. / C.B.S.E.<br>
+          We not showing any partialty for other school students. Good mark will consider as first preference.<br><br>
+          Candidates should have completed the age of 15 while apply.
+        </p>
+        <!-- End of Qulifications -->
+
+        <!-- Admission forms -->
+        <h5>Admission forms</h5>
+        <p style="padding: 10px;">
+          Application forms are available in school office room.<br>
+          The application form must be filled in the Candidate’s own handwriting and submitted on the next day itself.<br>
+        </p>
+        <!-- End of Admission forms -->
+
+        <!-- Carry -->
+        <h5>Carry these things along with you</h5>
+          <ul>
+            <li>A Passport size photograph.</li>
+            <li>Xerox copy of Ration card, Aadhar card, Birth Certificate received from Elementary School/ Corporation/ Municipality/ Panchayat Union / Panchayat Board office, should be enclosed and originals should be produced for verification.</li>
+            <li>A pen for filling the forms.</li>
+            <li>Original and Xerox copy of Community Certificate obtained from the Competent Authority must be produced to get the Application Form if belonging to SC/ST/MBC/DNC or BC.</li>
+            <li>TC and other original certificates </li>
+          </ul>
+        <!-- End of Carry -->
+
+    <!-- End of body content -->
+
+    <!-- Footer Start-->
+      {% include 'main/includes/footer.html' %}
+    <!-- End of Footer -->
+  </div>
+<!-- End of Body -->
+
+<script>
+  // Admissions Page
+    // Main collapse bar
+
+      var acc = document.getElementsByClassName("admission-accordion");
+      var i;
+
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+          this.classList.toggle("admission-active");
+          var panel = this.nextElementSibling;
+          if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+          } 
+        });
+      }
+  // End of Admissions Page
+</script>
+{% endblock %}
+

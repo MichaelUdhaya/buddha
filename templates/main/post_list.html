@@ -1,0 +1,115 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+{% block title %}
+    Annoncements Lists
+{% endblock %}
+<!-- End of Title Name -->
+
+{% block body %}
+
+<!-- Body Start -->
+  <div class="container body-container">
+
+    <!-- Page Header -->
+      <div class="page-header-box-left">
+        Annoncements
+      </div>
+    <!-- End of Page Header -->
+
+    <!-- body content -->
+      <!-- Breadcrumbs -->
+        <ul class="breadcrumb">
+          <li><a href="{% url 'main:url_home' %}">Home</a></li>
+          <li>Annoncements</li>
+        </ul>
+      <!-- End of Breadcrumbs -->  
+
+      <div class="list-group" style="margin: 20px;">
+        {% if posts %}
+          <!-- Table  -->
+            <table class="table table-primary table-striped table-hover text-center">
+              <thead class="thead-dark">
+                <tr>
+                  <th>S No.</th>
+                  <th>Post Title</th>
+                  <th>Posted Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for post in posts %}
+                <tr>
+                  <td><b>{{ forloop.counter }}</b></td>
+                  <td><a href="{% url 'main:url_post' pk=post.pk %}" class="text-dark">{{ post.post_title }}</a></td>
+                  <td>{{ post.post_published }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          <!-- End of Table  -->
+            <br>
+
+          <!-- Pagination -->
+            {% if posts.has_other_pages %}
+              <nav aria-label="...">
+                <ul class="pagination">
+                  <!-- previous page -->
+                    {% if posts.has_previous %}
+                      <li class="page-item">
+                        <a class="page-link" href="?page={{ posts.previous_page_number }}">Previous
+                        </a>
+                      </li>
+                    {% else %}
+                      <li class="page-item disabled">
+                        <span class="page-link">Previous</span>
+                      </li>
+                    {% endif %}
+                  <!-- End of previous page -->
+
+                <!-- Page numbers -->
+                  {% for i in posts.paginator.page_range %}
+                    {% if posts.number == i %}
+                      <li class="page-item active">
+                        <span class="page-link">{{ i }}
+                          <span class="sr-only">(current)</span>
+                        </span>
+                      </li>
+                    {% else %}
+                      <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                <!-- End of Page numbers -->
+
+                <!-- Next page -->
+                  {% if posts.has_next %}
+                    <li class="page-item">
+                      <a class="page-link" href="?page={{ posts.next_page_number }}">Next</a>
+                    </li>
+                  {% else %}
+                    <li class="page-item disabled">
+                      <span class="page-link">Next</span>
+                    </li>
+                  {% endif %}
+                <!-- End of Next page -->
+                </ul>
+              </nav>
+            {% endif %}
+          <!-- End of Pagination -->
+        {% else %}
+          <div class="alert alert-danger">No Annoncements here!</div>
+        {% endif %}
+      </div>
+    <!-- End of right side box -->
+    </div>
+    <!-- End of body content -->
+
+    <!-- Footer Start-->
+      {% include 'main/includes/footer.html' %}
+    <!-- End of Footer -->
+  </div>
+<!-- End of Body -->
+
+{% endblock %}
+
+

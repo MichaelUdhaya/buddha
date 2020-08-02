@@ -1,0 +1,79 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+{% block title %}
+  Working on Site
+{% endblock %}
+<!-- End of Title Name -->
+
+<!-- Navigation activae link -->
+  {% block nav-gallery %}
+    nav-active
+  {% endblock %}
+<!-- End of Navigation activae link -->
+
+{% block body %}
+
+<!-- Body Start -->
+  <div class="container body-container">
+
+    <!-- Page Header -->
+      <div class="page-header-box-left">
+        Not Available at this moment
+      </div>
+    <!-- End of Page Header -->
+
+    <!-- body content -->
+    <div class="row">
+      <!-- left side box -->
+      <div class="col-sm-12" style="padding: 0px 15px;">
+        <div class="jumbotron">
+          <p class="text-center text-danger" style="font-size: 24px;">This page is available in</p>
+          <h1 id="demo" class="text-center"></h1>
+        </div>
+      </div>
+      <!-- End of left side box -->
+    </div>
+    <!-- End of body content -->
+
+    <!-- Footer Start-->
+      {% include 'main/includes/footer.html' %}
+    <!-- End of Footer -->
+  </div>
+<!-- End of Body -->
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Dec 21, 2020 12:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+
+{% endblock %}
+
+

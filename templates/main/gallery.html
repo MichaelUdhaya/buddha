@@ -1,0 +1,170 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+{% block title %}
+    Gallery
+{% endblock %}
+<!-- End of Title Name -->
+
+<!-- Navigation activae link -->
+{% block nav-gallery %}
+  nav-active
+{% endblock %}
+<!-- End of Navigation activae link -->
+
+
+{% block body %}
+
+<!-- Body Start -->
+  <div class="container body-container">
+
+    <!-- Page Header -->
+      <div class="page-header-box-left">
+        Gallery
+      </div>
+    <!-- End of Page Header -->
+
+    <!-- body content --> 
+      <!-- Image show --> 
+        <div class="container" style="padding: 0px 50px;"> 
+          <h2 style="margin: 0px 0px 10px 10px;">Recent Clicks</h2>
+          <div class="gallery-container container" style="border:1px solid #8B0000; padding: 5px; background: url({% static 'main/images/backgrounds/jumbo-bg.svg' %});">
+            <!-- Main Images --> 
+              <div class="gallery-mySlides"> 
+                <div class="numbertext">1 / 6</div> 
+                <img src="{% static 'main/images/Slide images/img1.jpg'%}" style="width:100%" class="gallery-img" height="400">
+              </div>
+
+              <div class="gallery-mySlides">
+                <div class="numbertext">2 / 6</div>
+                <img src="{% static 'main/images/Slide images/img2.jpg'%}" style="width:100%" class="gallery-img" height="400">
+              </div>
+
+              <div class="gallery-mySlides">
+                <div class="numbertext">3 / 6</div>
+                <img src="{% static 'main/images/Slide images/img3.jpg'%}" style="width:100%" class="gallery-img" height="400">
+              </div>
+                
+              <div class="gallery-mySlides">
+                <div class="numbertext">4 / 6</div>
+                <img src="{% static 'main/images/Slide images/img1.jpg'%}" style="width:100%" class="gallery-img" height="400">
+              </div>
+
+              <div class="gallery-mySlides">
+                <div class="numbertext">5 / 6</div>
+                <img src="{% static 'main/images/Slide images/img2.jpg'%}" style="width:100%" class="gallery-img" height="400">
+              </div>
+                
+              <div class="gallery-mySlides">
+                <div class="numbertext">6 / 6</div>
+                <img src="{% static 'main/images/Slide images/img3.jpg'%}" style="width:100%" class="gallery-img" height="400">
+              </div>
+            <!-- End of Main Images -->
+            
+            <!-- Captions -->
+              <a class="prev" onclick="plusSlides(-1)">❮</a>
+              <a class="next" onclick="plusSlides(1)">❯</a>
+
+              <div class="caption-container">
+                <p id="caption"></p>
+              </div>
+            <!-- End of Captions -->
+
+            <!-- Gallery row images -->
+              <div class="gallery-row">
+                <div class="gallery-column">
+                  <img class="demo cursor" src="{% static 'main/images/Slide images/img1.jpg'%}" style="width:100%" onclick="currentSlide(1)" alt="The Woods" class="gallery-img">
+                </div>
+                <div class="gallery-column">
+                  <img class="demo gallery-cursor" src="{% static 'main/images/Slide images/img2.jpg'%}" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre" class="gallery-img">
+                </div>
+                <div class="gallery-column">
+                  <img class="demo gallery-cursor" src="{% static 'main/images/Slide images/img3.jpg'%}" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords" class="gallery-img">
+                </div>
+                <div class="gallery-column">
+                  <img class="demo gallery-cursor" src="{% static 'main/images/Slide images/img1.jpg'%}" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights" class="gallery-img">
+                </div>
+                <div class="gallery-column">
+                  <img class="demo gallery-cursor" src="{% static 'main/images/Slide images/img2.jpg'%}" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise" class="gallery-img">
+                </div>    
+                <div class="gallery-column">
+                  <img class="demo gallery-cursor" src="{% static 'main/images/Slide images/img3.jpg'%}" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains" class="gallery-img">
+                </div>
+              </div>
+            <!-- End of Gallery row images -->
+          </div>
+        </div>
+      <!-- End of Image show -->
+      <br>
+      <!-- Row Content -->
+        <div class="row">
+          <!-- Event Box -->
+            <div class="col-sm-4" style="border:1px solid #8b0000; height: 300px;">
+              <div class="container">
+                imgbox 1
+              </div>
+            </div>
+          <!-- End of Event Box -->
+          <!-- Sports Box -->
+            <div class="col-sm-4" style="border:1px solid #8b0000;height: 300px;">
+              <div class="container">
+                imgbox 1
+              </div>
+            </div>
+          <!-- End of Sports Box -->
+          <!-- Awards Box -->
+            <div class="col-sm-4" style="border:1px solid #8b0000;height: 300px">
+              <div class="container">
+                imgbox 1
+              </div>
+            </div>
+          <!-- End of Awards Box -->
+        </div>
+      <!-- End of Row Content -->
+    <!-- End of body content -->
+
+    {% include 'main/includes/footer.html' %}
+  </div>
+<!-- End of Body -->
+
+
+
+<script>
+  // Gallary Page
+    //
+
+    // Main gallery
+      var slideIndex = 1;
+      showSlides(slideIndex);
+
+      function plusSlides(n) {
+        showSlides(slideIndex += n);
+      }
+
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("gallery-mySlides");
+        var dots = document.getElementsByClassName("demo");
+        var captionText = document.getElementById("caption");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" gallery-active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " gallery-active";
+        captionText.innerHTML = dots[slideIndex-1].alt;
+      }
+
+  // End of Gallary Page
+</script>
+
+{% endblock %}

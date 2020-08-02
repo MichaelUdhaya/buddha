@@ -1,0 +1,75 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+{% block title %}
+  Contact Us
+{% endblock %}
+<!-- End of Title Name -->
+
+{% block body %}
+
+<!-- Body Start -->
+  <div class="container body-container">
+
+    <!-- body content -->
+    {% for c in contact %}
+      <div class="feedback-container">
+        <div style="text-align:center">
+          <h2>Contact Us</h2>
+        </div>
+        <br/>
+        <!-- Alert Messages -->
+          {% include 'reusable/messages.html' %}
+        <!-- End of Alert Messages -->
+        <div class="feedback-row">
+          <div class="feedback-column">
+            <!-- Breadcrumbs -->
+              <ul class="breadcrumb">
+                <li><a href="{% url 'main:url_home' %}">Home</a></li>
+                <li>Contact Us</li>
+              </ul>
+            <!-- End of Breadcrumbs -->
+            <!-- <img src="{% static 'main/images/backgrounds/contact.jpg' %}" style="width:100%"> -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d943.552265698042!2d80.30578037062766!3d13.174893082671602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5270275ead999f%3A0xe27db4164c5420e6!2sJai%20Gopal%20Garodia%20Government%20Higher%20Secondary%20School%2C%20Anjugam%20nagar%20ll%2C%20Tiruvottiyur%2C%20Chennai%2C%20Tamil%20Nadu%20600019!5e0!3m2!1sen!2sin!4v1590677232350!5m2!1sen!2sin" width="400" height="300" frameborder="0" style="border:1px solid grey;width:100%;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            <p class="pull-right" style="font-size: 12px; color: green;">
+              <i>Details Updated on : {{ c.updated_date }}</i>
+            </p>
+          </div>
+
+          <div class="feedback-column">
+
+
+            <h5><i class="fas fa-user"></i> &nbsp Point of Contact : </h5>
+            <p style="margin-left: 20px">{{ c.poc }}</p>
+            <hr>
+
+            <h5><i class="fas fa-map-marker-alt"></i> &nbsp Location : </h5>
+            <p style="margin-left: 20px">{{ c.location }}</p>
+            <hr>
+            
+            <h5><i class="fas fa-phone"></i> &nbsp Phone : </h5>
+            <p style="margin-left: 20px">{{ c.phone }}</p>
+            <hr>
+            
+            <h5><i class="fas fa-envelope"></i> &nbsp Email : </h5>
+            <p style="margin-left: 20px">{{ c.email }}</p>
+            <hr>
+            
+            <h5><i class="fas fa-globe-asia"></i> &nbsp Web :</h5>
+            <p style="margin-left: 20px">{{ c.web }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    <!-- End of body content -->
+
+    <!-- Footer Start-->
+      {% include 'main/includes/footer.html' %}
+    <!-- End of Footer -->
+  </div>
+<!-- End of Body -->
+
+{% endblock %}
+
+

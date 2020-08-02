@@ -1,0 +1,148 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+{% block title %}
+    Policies
+{% endblock %}
+<!-- End of Title Name -->
+
+<!-- Navigation activae link -->
+{% block nav-policies %}
+  nav-active
+{% endblock %}
+<!-- End of Navigation activae link -->
+
+{% block body %}
+
+<!-- Body Start -->
+  <div class="container body-container">
+
+    <!-- Page Header -->
+      <div class="page-header-box-right">
+        Our Policies
+      </div>
+    <!-- End of Page Header -->
+
+    <!-- body content -->
+      {% for p in policy %}
+      <!-- Higher Secondary Content -->
+        <div class="container">
+          <div class="tab">
+            Higher Secondary
+          </div>
+
+          <div id="HRS" class="tabcontent">
+            <div id="accordion" style="margin-top: 20px;">
+              <!-- Dress Code -->
+                <ul class="list-group">
+                  <li class="list-group-item active">Dress Code</li>
+                  <li class="list-group-item" style="border: 1px solid #007bff;">
+                    <p>Boys : {{ p.hrs_boys_dress }}</p>
+                    <p>Girls : {{ p.hrs_girls_dress }}</p>
+                  </li>
+                </ul>
+              <!-- End of  Dress Code -->
+              <br>
+              <!-- Class Timings -->
+                <ul class="list-group">
+                  <li class="list-group-item active">Class Timings</li>
+                  <li class="list-group-item" style="border: 1px solid #007bff;">
+                    <p>{{ p.hrs_class_timing }}</p>
+                  </li>
+                </ul>
+              <!-- End of Class Timings -->
+            </div>
+          </div>
+        </div>
+      <!-- End of Higher Secondary Content -->
+      <br>
+      <!-- High School Content -->
+        <div class="container">
+          <div class="tab">
+            High School
+          </div>
+
+          <div id="HS" class="tabcontent" style="display: block;">
+            <div id="accordion" style="margin-top: 20px;">
+              <!-- Dress Code -->
+                  <ul class="list-group">
+                    <li class="list-group-item active">Dress Code</li>
+                    <li class="list-group-item" style="border: 1px solid #007bff;">
+                      <p>Boys : {{ p.hs_boys_dress }}</p>
+                      <p>Girls : {{ p.hs_girls_dress }}</p>
+                    </li>
+                  </ul>
+                <!-- End of  Dress Code -->
+                <br>
+                <!-- Class Timings -->
+                  <ul class="list-group">
+                    <li class="list-group-item active">Class Timings</li>
+                    <li class="list-group-item" style="border: 1px solid #007bff;">
+                      <p>{{ p.hs_class_timing }}</p>
+                    </li>
+                  </ul>
+                <!-- End of Class Timings -->
+
+                <!-- drop down method -->
+                  <!-- <div class="card">
+                    <div class="card-header">
+                      <a class="card-link text-danger" data-toggle="collapse" href="#collapseOne">Dress Code</a>
+                    </div>
+                    <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                      <div class="card-body">
+                        <p>Boys : Shirt</p>
+                        <p>Girls : Chudidhar</p>
+                      </div>
+                    </div>
+                  </div> -->
+                <!-- End of drop down method -->
+            </div>
+          </div>
+        </div>
+      <!-- End of High School Content -->
+      <br>
+      <!-- High School Content -->
+        <div class="container">
+          <div class="tab">
+            Common Policies
+          </div>
+
+          <div class="tabcontent" style="display: block;">
+            <div id="accordion" style="margin-top: 20px;">
+
+                <!-- Visitor Timings -->
+                  <ul class="list-group">
+                    <li class="list-group-item active">Visitor Timings</li>
+                    <li class="list-group-item" style="border: 1px solid #007bff;">
+                      {{ p.visitor_timing }}
+                    </li>
+                  </ul>
+                <!-- End of Visitor Timings -->
+                <br>
+                <!-- School Policies -->
+                  <ul class="list-group">
+                    <li class="list-group-item active">School Policies</li>
+                    <li class="list-group-item" style="border: 1px solid #007bff;">
+                      {{ p.school_policies|safe }}
+                    </li>
+                  </ul>
+                <!-- End of School Policies -->
+            </div>
+          </div>
+        </div>
+        <p class="pull-right" style="margin-right: 20px; font-size: 12px; color: green;">
+          <i>Policies Updated on : {{ p.published_date}}</i>
+        </p>
+      <!-- End of High School Content -->
+      {% endfor %}
+    <!-- End of body content -->
+
+    <!-- Footer Start-->
+      {% include 'main/includes/footer.html' %}
+    <!-- End of Footer -->
+  </div>
+<!-- End of Body -->
+
+
+{% endblock %}

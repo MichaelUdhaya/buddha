@@ -1,0 +1,81 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+{% block title %}
+  {% if post %}
+    {{ post.post_title }} | Annoncements 
+  {% else %}
+    No Annoncements
+  {% endif %}
+{% endblock %}
+<!-- End of Title Name -->
+
+{% block body %}
+
+<!-- Body Start -->
+  <div class="container body-container">
+
+    <!-- Page Header -->
+      <div class="page-header-box-left">
+        Annoncement
+      </div>
+    <!-- End of Page Header -->
+
+    <!-- body content -->
+    <div class="row">
+      <!-- left side box -->
+      <div class="col-sm-9" style="padding: 0px 15px;">
+        <!-- Breadcrumbs -->
+          <ul class="breadcrumb">
+            <li><a href="{% url 'main:url_home' %}">Home</a></li>
+            <li><a href="{% url 'main:url_post_list' %}">Annoncements</a></li>
+            <li>{% if post %}{{ post.post_title }}{% else %}N/A{% endif %}</li>
+          </ul>
+        <!-- End of Breadcrumbs -->
+
+        {% if post %}
+          <h1>{{ post.post_title }}</h1>
+          <span class="badge badge-primary" style="padding: 5px;">{{ post.post_published }}</span>
+          <p>
+            <div class="blog-body" style="overflow: hidden;">
+              <p>{{post.post_content|safe}}</p>
+            </div>
+          </p>
+        {% else %}
+          <div class="alert alert-danger">No Such Annoncement here!</div>
+        {% endif %}
+      </div>
+      <!-- End of left side box -->
+
+      <!-- right side box -->
+      <div class="col-sm-3">
+        <div class="card bg-secondary text-warning" style="padding: 15px; background: url({% static 'main/images/backgrounds/box-bg.png' %});">
+          <h5>Post List</h5>
+          <ul class="nav flex-column">
+            {% for post in all_posts %}
+              <li class="nav-item">
+                <div>
+                <a class="nav-link" href="{% url 'main:url_post' pk=post.id %}" style="color:white;">{{ post.post_title }} &nbsp
+                <span class="badge badge-warning" style="border: 1px solid white;">{{ post.post_published|date:'M d, Y' }}</span>
+                </a>
+              </div>
+              </li>
+            {% endfor %}
+          </ul>
+          <a class="btn btn-primary" href="{% url 'main:url_post_list' %}" style="margin-top: 15px; color: white;">View All</a>
+        </div>
+      </div>
+      <!-- End of right side box -->
+    </div>
+    <!-- End of body content -->
+
+    <!-- Footer Start-->
+      {% include 'main/includes/footer.html' %}
+    <!-- End of Footer -->
+  </div>
+<!-- End of Body -->
+
+{% endblock %}
+
+
