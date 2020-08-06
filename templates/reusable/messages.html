@@ -1,19 +1,61 @@
 {% if messages %}
 	{% for message in messages %}
-		<div id="message" class="container">
-			<div class="alert alert-{{message.tags}} alert-dismissible text-center" role="alert">
-				<button type="button" class="close" data-dismiss="alert">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<strong>
-					{% if message.level == DEFAULT_MESSAGE_LEVEL.ERROR %}
-						Error
-					{% else %}
-						{{ message.tags|title }}
-					{% endif %}
-				</strong>
-				{{ message }}
-			</div>
-		</div>
+		<!-- The Modal -->
+		  <div class="modal fade" id="myModal">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		      
+		        <!-- Modal Header -->
+		        {% if message.tags == 'error'%}
+			        <div class="modal-header bg-danger">
+			    {% elif message.tags == 'info'%}
+			    	<div class="modal-header bg-info">
+			    {% elif message.tags == 'warning'%}
+			    	<div class="modal-header bg-warning">
+			    {% else %}
+			    	<div class="modal-header">
+			    {% endif %}
+			          <h4 class="modal-title">
+			          	{{ message.tags|title }}
+			          </h4>
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        </div>
+		        <!-- End of Modal Header -->
+
+		        <!-- Modal body -->
+			        <div class="modal-body">
+			          {{ message }}
+			        </div>
+			    <!-- End of Modal body -->
+		        
+		        <!-- Modal footer -->
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-sm btn-info" data-dismiss="modal">Close</button>
+			        </div>
+			    <!-- End of Modal footer -->
+		        
+		      </div>
+		    </div>
+		  </div>
+		<!-- End of Model -->
 	{% endfor %}
+	<script>
+		$(document).ready(function(){
+		    $("#myModal").modal('show');
+		});
+	</script>
 {% endif %}
+
+ {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success'%}
+                <script>M.toast({html: "{{message}}", classes: 'green rounded', displayLength:2000});</script>
+            {% elif message.tags == 'info'%}
+                <script>M.toast({html: "{{message}}", classes: 'blue rounded', displayLength:2000});</script>
+            {% elif message.tags == 'warning'%}
+                <script>M.toast({html: "{{message}}", classes: 'orange rounded', displayLength:10000});</script>
+            {% elif message.tags == 'error'%}
+                <script>M.toast({html: "{{message}}", classes: 'red rounded', displayLength:10000});</script>
+            {% endif %}
+        {% endfor %}
+    {% endif %}

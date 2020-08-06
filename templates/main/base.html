@@ -47,20 +47,17 @@
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"></script>
 
+{% if request.path == "/" %}
 <!-- Site Header Start-->
   <div class="container-fluid" style="background-image: radial-gradient(white, #d44949); padding: 30px 50px">
-    
-    <div class="row">
-      <div class="col-sm-4">
+      <center>
         <img src="{% static 'main/images/icons/buddha-icon.png' %}" height="150px" width="150px">
-      </div>
-      <div class="col-sm-8" style="padding-top: 30px;">
-          <h2 class='text-center' style="font-family: Coiny;">புத்தர் இனைய வழி பயிற்சி மையம் </h2>
-          <h5 class='text-center'>திருவொற்றியூர் - 600 019</h5>
-        </div>
-    </div>
+        <h2 class='text-center' style="font-family: Coiny; margin-top: 10px;">புத்தர் இனைய வழி பயிற்சி மையம் </h2>
+        <h5 class='text-center'>திருவொற்றியூர் - 600 019</h5>
+      </center>
   </div>
-<!-- End of Site Header-->  
+<!-- End of Site Header-->
+{% endif  %}
 
 <!-- Navbar Start -->
   <nav class="navbar navbar-expand-sm sticky-top my-nav"><!-- 'my-nav' is local css-->
@@ -74,18 +71,19 @@
     </button>
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mr-auto">
+        <!-- by adding mr-auto the second ul set was automaticatlly goes to right align -->
         <li class="nav-item {% block nav-home %}{% endblock %}">
           <a class="nav-link" href="{% url 'main:url_home' %}">
           <i class="fas fa-home"></i> Home</a>
         </li>
-        <li class="nav-item {% block nav-facility %}{% endblock %}">
-          <a class="nav-link" href="{% url 'main:url_facilities' %}">
-          <i class="fas fa-building"></i> Facilities</a>
+        <li class="nav-item {% block nav-current-affairs %}{% endblock %}">
+          <a class="nav-link" href="{% url 'main:url_current_affairs' %}">
+          <i class="fas fa-building"></i> Current Affairs</a>
         </li>
-        <li class="nav-item {% block nav-admissions %}{% endblock %}">
-          <a class="nav-link" href="{% url 'main:url_admissions' %}">
-          <i class="fas fa-portrait"></i> Admissions</a>
+        <li class="nav-item {% block nav-courses %}{% endblock %}">
+          <a class="nav-link" href="{% url 'main:url_courses' %}">
+          <i class="fas fa-portrait"></i> Courses</a>
         </li>
         <!--
         <li class="nav-item {% block nav-policies %}{% endblock %}">
@@ -106,6 +104,27 @@
         </li>
         <li class="nav-item">
         </li>
+      </ul>
+      <ul class="nav navbar-nav">
+        {% if user.is_authenticated %}
+             <li class="nav-item">
+               <a class="nav-link {% block nav-account %}{% endblock %}" href="#">
+                <i class="fas fa-user"></i> {{user.username|title}}</a>
+             </li>
+             <li class="nav-item">
+              <a class="nav-link" href="{% url 'main:url_logout' %}">
+              <i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+              <a class="nav-link {% block nav-login %}{% endblock %}" href="{% url 'main:url_login' %}">
+              <i class="fas fa-sign-in-alt"></i> Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% block nav-signup %}{% endblock %}" href="{% url 'main:url_signup' %}">
+              <i class="fas fa-user-plus"></i> SignUp</a>
+            </li>
+        {% endif %}
       </ul>
     </div>
   </nav>

@@ -2,11 +2,16 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.contrib import messages
 
+#Auth & user
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
+from .forms import UserForm
+
 #utiltis
 from datetime import datetime
 
 from .choices import FEEDBACK_RATING
-from .models import Post, Feedback, Contact, Advertisement
+from .models import Post, Feedback, Contact, Advertisement, Courses
 
 
 # Home Page
@@ -23,6 +28,7 @@ def home_view(request):
 	#Get all post by desending order
 	post_lists = Post.objects.order_by('-post_published')[:4]
 
+	# messages.success(request, 'Welcome to Buddha')
 
 	context = {
 		'post' : post,
@@ -65,16 +71,16 @@ def post_list(request):
 	return render(request, 'main/post_list.html', context)
 
 # Facilities Page
-def facilities_view(request):
+def current_affairs_view(request):
 	""" Facilities Page of school site """
 	posts = Post.objects.all()
-	return render(request, 'main/facilities.html', {})
+	return render(request, 'main/current_affairs.html', {})
 
 # Admissions Page
-def admissions_view(request):
-	""" Admissions Page of school site """
-	posts = Post.objects.all()
-	return render(request, 'main/admissions.html', {})
+def courses_view(request):
+	""" Courses Page """
+	courses = Courses.objects.all()
+	return render(request, 'main/courses.html', {'courses':courses})
 
 # Policies/Staffs Page
 def policies_view(request):
@@ -119,3 +125,52 @@ def feedback_view(request):
 		return redirect('main:url_home')
 	else:
 		return render(request, 'main/feedback.html', {'FEEDBACK_RATING': FEEDBACK_RATING})
+
+#Authentication
+def signup_view(request):
+	if request.method == 'POST':
+		form = UserForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			user.refresh_from_db()  # load the profile instance created by the signal
+			user.profile.dob = form.cleaned_data.get('birth_date')
+			user.profile.mobile = form.cleaned_data.get('mobile')
+			user.profile.email = form.cleaned_data.get('email')
+			user.profile.qulification = form.cleaned_data.get('qulification')
+			user.profile.preparing_exam_from = form.cleaned_data.get('preparing_exam_from')
+			username = form.cleaned_data.get('username')
+			user = form.save()
+			messages.success(request, f"New account created for {username}")
+			login(request, user)
+			return redirect('main:url_home')
+		else:
+			messages.error(request, f"Please correct the error below!")
+			return render(request, 'main/sign-up.html', context = {'form':form})
+	else:
+		form = UserForm
+		return render(request, 'main/sign-up.html', context = {'form':form})
+
+
+def login_view(request):
+	if request.method == 'POST':
+		form = AuthenticationForm(request=request, data=request.POST)
+		if form.is_valid():
+			username = form.cleaned_data.get('username')
+			password = form.cleaned_data.get('password1')
+			print("username : " + username)
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				login(request, user)
+				messages.success(request, f'Welcome {username}!')
+				return redirect('main:url_home')
+			else:
+				messages.error(request, "Username or Password is incorrect")
+		else:
+			messages.error(request, "Username or Password is incorrect")
+	form = AuthenticationForm
+	return render(request, 'main/login.html', {'form':form})
+
+def logout_view(request):
+	logout(request)
+	messages.success(request, 'Logout successfully!')
+	return redirect('main:url_home')

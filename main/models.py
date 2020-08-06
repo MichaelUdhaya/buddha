@@ -1,5 +1,37 @@
 from django.db import models
+
+#Default User models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+#choice
+from main import choices
+
+#utility
 from datetime import datetime
+
+class Profile(models.Model):
+    
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    dob = models.DateField(default='1900-01-01')
+    gender = models.PositiveSmallIntegerField(choices=choices.GENDER, null=False, blank=False, default=3)
+    mobile = models.CharField(max_length=15, blank=False)
+    street = models.CharField(max_length=250, blank=True)
+    city = models.CharField(max_length=50, blank=True)
+    state = models.CharField(max_length = 150, choices = choices.INDIAN_STATES, default = 'TN') 
+    qulification = models.CharField(max_length=60, blank=True)
+    preparing_exam_from = models.DateField(default=datetime.now)
+
+    def __str__(self):  # __unicode__ for Python 2
+        return self.user.username
+
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    instance.profile.save()
+
 
 # Post Models
 class Post(models.Model):
@@ -14,18 +46,9 @@ class Post(models.Model):
 #Feedback models
 class Feedback(models.Model):
 	""" This models is for get a feed from users"""
-	#Rating field
-	FEEDBACK_RATING = [
-		('1', 'Excellent'),
-		('2', 'Average'),
-		('3', 'Good'),
-		('4', 'Fair'),
-		('5', 'Bad'),
-	]
-
 	name = models.CharField(max_length=100)
 	email = models.EmailField(max_length=150)
-	rating = models.CharField(max_length=1, choices=FEEDBACK_RATING)
+	rating = models.CharField(max_length=1, choices=choices.FEEDBACK_RATING)
 	message = models.TextField(default='N/A')
 	
 	def __str__(self):
@@ -54,3 +77,11 @@ class Advertisement(models.Model):
 
 	def __str__(self):
 		return str(self.ad_name)
+
+class Courses(models.Model):
+	exam_number = models.IntegerField()
+	exam_date = models.DateField(default=datetime.now)
+	syallbus = models.TextField(default='N/A')
+
+	def __str__(self):
+		return str(self.exam_number) + ' - ' + str(self.exam_date)

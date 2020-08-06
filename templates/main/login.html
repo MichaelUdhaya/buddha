@@ -1,0 +1,96 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+{% block title %}
+    Login
+{% endblock %}
+<!-- End of Title Name -->
+
+<!-- Navigation activae link -->
+{% block nav-login %}
+  nav-active
+{% endblock %}
+<!-- End of Navigation activae link -->
+
+{% load widget_tweaks %}
+
+{% block body %}
+
+<!-- Body Start -->
+  <div class="body-container">
+  	<!-- Alert Messages -->
+      {% include 'reusable/messages.html' %}
+    <!-- End of Alert Messages -->
+
+    <!-- body content -->
+      <div class="container border" style="padding: 40px; border-radius: 5px; background-color: bisque"">
+      	<center>
+      		<img src="{% static 'main/images/icons/buddha-icon.png' %}" height="150px" width="150px">
+      		<br>
+      		<h2 class="text-muted">Login to Buddha Online Institue</h2>
+      	</center>
+        <div class="row" style="margin-top: 30px;">
+          <div class="col-sm-6">
+            <img src="{% static 'main/images/backgrounds/register.jpg' %}" width="100%" style="border-radius: 5px;">
+          </div>
+          <div class="col-sm-6">
+            <form method="post" novalidate style="padding: 40px; border-radius: 5px;" class="border">
+              {% csrf_token %}
+
+              {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field }}
+              {% endfor %}
+
+              {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                  {% for error in form.non_field_errors %}
+                    {{ error }}
+                  {% endfor %}
+                </div>
+              {% endif %}
+
+              {% for field in form.visible_fields %}
+                <div class="form-group">
+                  {{ field.label_tag }}
+
+                  {% if form.is_bound %}
+                    {% if field.errors %}
+                      {% render_field field class="form-control is-invalid" %}
+                      {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                          {{ error }}
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      {% render_field field class="form-control is-valid" %}
+                    {% endif %}
+                  {% else %}
+                    {% render_field field class="form-control" %}
+                  {% endif %}
+
+                  {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                  {% endif %}
+                </div>
+              {% endfor %}
+              {{ profile_form.as_p }}
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <br><br>
+              If you dont have an account <a href="{% url 'main:url_signup' %}"><strong>Register</strong></a> instead.
+            </form>
+          </div>
+        </div>  
+      </div>
+
+    <!-- End of body content -->
+
+    <!-- Footer Start-->
+      {% include 'main/includes/footer.html' %}
+    <!-- End of Footer -->
+  </div>
+<!-- End of Body -->
+
+
+{% endblock %}

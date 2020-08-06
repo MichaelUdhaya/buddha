@@ -4,6 +4,7 @@
 	body{
 		
 	}
+
 /* ------------------------------ End of Body Style -------------------------  */
 
 /* ------------------------------ Page Header -------------------------  */
@@ -35,9 +36,8 @@
 
 /* ------------------------------ Body Container -------------------------  */
 	.body-container{
-		margin:10px 80px;
-		/*margin-bottom: 30px;*/
-		background: white;
+		margin:10px 40px;
+		background: ghostwhite;
 		border-radius: 5px;
 		padding: 30px;
 		
@@ -89,11 +89,12 @@
 	ul.breadcrumb {
 	  padding: 10px 16px;
 	  list-style: none;
-	  background-color: #ccc;
+	  /*background-color: #ccc;*/
+	  border-bottom: 1px solid #ccc;
 	}
 	ul.breadcrumb li {
 	  display: inline;
-	  font-size: 18px;
+	  font-size: 12px;
 	}
 	ul.breadcrumb li+li:before {
 	  padding: 8px;
@@ -204,11 +205,22 @@
 		margin: 20px 10px;
 		border-radius: 5px;
 		border: 1px solid #8B0000;
-		padding: 5px 10px;
+		padding: 30px;
 		background-color: #f8f9fa;
 		font-family: Courier New, Fixedsys;
-		overflow: scroll;
-		height: 150px;
+		overflow: hidden;
+		height: 250px;
+	}
+
+	.blog-body-post{
+		margin: 20px 0px;
+		border-radius: 2px;
+		border: 1px solid #8B0000;
+		padding: 30px;
+		background-color: #f8f9fa;
+		font-family: Courier New, Fixedsys;
+		overflow: hidden;
+		height: auto;
 	}
 
 	.blog-tilte{
@@ -651,3 +663,10 @@
 
 /*------------------------------- End of Feedback -------------------------  */
 
+/*Login*/
+
+.login-body {
+	padding: 40px 140px;
+	border-radius: 5px;
+	background-color: bisque;
+}

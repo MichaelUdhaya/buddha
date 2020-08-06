@@ -14,7 +14,7 @@
 {% block body %}
 
 <!-- Body Start -->
-  <div class="container body-container">
+  <div class="body-container">
 
     <!-- Page Header -->
       <div class="page-header-box-left">
@@ -35,10 +35,10 @@
         <!-- End of Breadcrumbs -->
 
         {% if post %}
-          <h1>{{ post.post_title }}</h1>
+          <h2>{{ post.post_title }}</h2>
           <span class="badge badge-primary" style="padding: 5px;">{{ post.post_published }}</span>
           <p>
-            <div class="blog-body" style="overflow: hidden;">
+            <div class="blog-body-post">
               <p>{{post.post_content|safe}}</p>
             </div>
           </p>

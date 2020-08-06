@@ -1,0 +1,60 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+{% block title %}
+    Our Courses
+{% endblock %}
+<!-- End of Title Name -->
+
+<!-- Navigation activae link -->
+{% block nav-courses %}
+  nav-active
+{% endblock %}
+<!-- End of Navigation activae link -->
+
+{% block body %}
+
+<!-- Body Start -->
+  <div class="body-container">
+
+    <!-- Page Header -->
+      <div class="page-header-box-left">
+        Our Courses
+      </div>
+    <!-- End of Page Header -->
+
+    <!-- body content -->
+       <!--  <img src="{% static 'main/images/courses/new courses.png' %}" class="admission-image">
+        <br>
+        <br> -->
+
+      <h3 class="text-center">TNPSC GROUP I , II & IIA முதன்மை தேற்விற்கான அட்டவணை</h3>
+      <hr>
+      <table class="table table-danger table-striped table-bordered">
+        <thead class="text-center bg-warning">
+          <tr>
+            <th>தேர்வு எண்</th>
+            <th>தேதி</th>
+            <th>பாடத்திட்டம் (SYALLUBUS)</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          {% for course in courses %}
+          <tr>
+            <td>{{ course.exam_number }}</td>
+            <td>{{ course.exam_date }}</td>
+            <td>{{ course.syallbus|safe }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    <!-- End of body content -->
+
+    <!-- Footer Start-->
+      {% include 'main/includes/footer.html' %}
+    <!-- End of Footer -->
+  </div>
+<!-- End of Body -->
+{% endblock %}
+
