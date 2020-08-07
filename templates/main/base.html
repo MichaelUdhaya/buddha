@@ -89,20 +89,23 @@
         <li class="nav-item {% block nav-policies %}{% endblock %}">
           <a class="nav-link" href="{% url 'main:url_policies' %}">Policies</a>
         </li>
-        -->
         <li class="nav-item {% block nav-gallery %}{% endblock %}">
           <a class="nav-link" href="{% url 'main:url_gallery' %}">
           <i class="fas fa-images"></i> Gallery</a>
-        </li>
+        </li> -->
         <li class="nav-item {% block nav-about-us %}{% endblock %}">
           <a class="nav-link" href="{% url 'main:url_about_us' %}">
           <i class="fas fa-info-circle"></i> About Us</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-          <i class="fas fa-child"></i> Student Corner</a>
-        </li>
-        <li class="nav-item">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            <i class="fas fa-child"></i> Student Corner
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item text-danger" href="#" style="background: None; border: none;">
+              Results
+            </a>
+          </div>
         </li>
       </ul>
       <ul class="nav navbar-nav">

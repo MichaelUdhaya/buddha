@@ -25,54 +25,58 @@
 
     <!-- body content -->
       <div class="container border login-body">
-        <center>
-          <img src="{% static 'main/images/icons/buddha-icon.png' %}" height="150px" width="150px">
-          <br>
-          <h2 class="text-muted">Register yourself with <b>Buddha Online Academy</b>!</h2>
-        </center>
-        <form method="post" style="padding: 40px; border-radius: 5px;" class="border">
-          {% csrf_token %}
-          {% for hidden_field in form.hidden_fields %}
-            {{ hidden_field }}
-          {% endfor %}
-
-          {% if form.non_field_errors %}
-            <div class="alert alert-danger" role="alert">
-              {% for error in form.non_field_errors %}
-                {{ error }}
+        <div class="row">
+          <div class="col-sm-12">
+            <center>
+              <img src="{% static 'main/images/icons/buddha-icon.png' %}" height="150px" width="150px">
+              <br>
+              <h2 class="text-muted">Register yourself with <b>Buddha Online Academy</b>!</h2>
+            </center>
+            <form method="post" style="padding: 40px; border-radius: 5px;" class="border">
+              {% csrf_token %}
+              {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field }}
               {% endfor %}
-            </div>
-          {% endif %}
 
-          {% for field in form.visible_fields %}
-            <div class="form-group">
-              {{ field.label_tag }}
-
-              {% if form.is_bound %}
-                {% if field.errors %}
-                  {% render_field field class="form-control is-invalid" %}
-                  {% for error in field.errors %}
-                    <div class="invalid-feedback">
-                      {{ error }}
-                    </div>
+              {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                  {% for error in form.non_field_errors %}
+                    {{ error }}
                   {% endfor %}
-                {% else %}
-                  {% render_field field class="form-control is-valid" %}
-                {% endif %}
-              {% else %}
-                {% render_field field class="form-control" %}
+                </div>
               {% endif %}
 
-              {% if field.help_text %}
-                <small class="form-text text-muted">{{ field.help_text }}</small>
-              {% endif %}
-            </div>
-          {% endfor %}
+              {% for field in form.visible_fields %}
+                <div class="form-group">
+                  {{ field.label_tag }}
 
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-         <br>
-          If you already have an account <a href="{% url 'main:url_login' %}"><strong>Login</strong></a> instead.        
+                  {% if form.is_bound %}
+                    {% if field.errors %}
+                      {% render_field field class="form-control is-invalid" %}
+                      {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                          {{ error }}
+                        </div>
+                      {% endfor %}
+                    {% else %}
+                      {% render_field field class="form-control is-valid" %}
+                    {% endif %}
+                  {% else %}
+                    {% render_field field class="form-control" %}
+                  {% endif %}
+
+                  {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                  {% endif %}
+                </div>
+              {% endfor %}
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+             <br>
+              If you already have an account <a href="{% url 'main:url_login' %}"><strong>Login</strong></a> instead.
+          </div>
+        </div>
       </div>
 
     <!-- End of body content -->

@@ -40,11 +40,11 @@
               {% for ad in ads %}
                 {% if forloop.counter0 == 0 %}
                   <div class="carousel-item active">
-                    <img src="{{ ad.ad_photo.url }}" alt="{{ ad.ad_name }}" width=100%>
+                    <img src="{{ ad.ad_photo.url }}" alt="{{ ad.ad_name }}">
                   </div>
                 {% else %}
                   <div class="carousel-item">
-                    <img src="{{ ad.ad_photo.url }}" alt="{{ ad.ad_name }}" width=100%>
+                    <img src="{{ ad.ad_photo.url }}" alt="{{ ad.ad_name }}">
                   </div>
                 {% endif %}
               {% endfor %}
@@ -62,7 +62,7 @@
         {% else %}
             <div class="carousel-inner">
               <div class="item active">
-                <img src="{% static 'main/images/Slide images/no-post.png' %}" alt="No Post" width="1100" height="500">
+                <img src="{% static 'main/images/Slide images/no-post.png' %}" alt="No Post">
               </div>
             </div>
         {% endif %}
@@ -111,7 +111,15 @@
                 </div>
               <!-- End of collapse bar -->
               <br>
-              
+              <!-- WhatsApp Link -->
+                <a class="btn btn-sm btn-success" href="whatsapp://send?text=Hi, I am instrested to join in your academy.&phone=+919884480590&abid=+919884480590">
+                <i class="fab fa-whatsapp"></i> Connect with WhatsApp</a>
+                <br><br>
+              <!-- End of WhatsApp Link  -->
+              <!-- Facebook link -->
+                <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2Fbuddhaeducator%2F&width=141&layout=button_count&action=like&size=large&share=true&height=46&appId" width=100% height="50" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+              <!-- End of Facebook link -->
+
               <!-- <div class="post-box">
                 <p class="post-box-header">Social Links</p>
                 <div style="margin:15px 30px;">
@@ -121,21 +129,21 @@
                 </div>
               </div> -->
               <!-- Social Links -->
-                <div class="post-box">
-                  <p class="post-box-header">Social Links</p>
-                  <div style="margin:15px 30px;">
-                    <!-- Facebook -->
-                     <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2Fbuddhaeducator%2F&width=141&layout=button_count&action=like&size=large&share=true&height=46&appId" width=100% height="50" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-                    <!-- End of Facebook -->
-                    <br>
-                    <!-- Youtube -->
-                      <!-- <script src="https://apis.google.com/js/platform.js"></script> -->
-                      <!--  <div class="g-ytsubscribe" data-channel="michaeludhaya" data-layout="default" data-count="default"></div> -->
-                     <!--  <div class="g-ytsubscribe" data-channel="buddhaonlineacademy" data-layout="full" data-count="default"></div> -->
-                    <!-- End of Youtube -->
-                  </div>
-                </div>
-              <!-- End of Social Links -->
+                <!--<div class="post-box">
+                    <p class="post-box-header">Social Links</p>
+                    <div style="margin:15px 30px;"> -->
+                      <!-- Facebook -->
+                   <!--     <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Ffacebook.com%2Fbuddhaeducator%2F&width=141&layout=button_count&action=like&size=large&share=true&height=46&appId" width=100% height="50" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe> -->
+                      <!-- End of Facebook -->
+                      <!-- <br> -->
+                      <!-- Youtube -->
+                        <!-- <script src="https://apis.google.com/js/platform.js"></script> -->
+                        <!--  <div class="g-ytsubscribe" data-channel="michaeludhaya" data-layout="default" data-count="default"></div> -->
+                       <!--  <div class="g-ytsubscribe" data-channel="buddhaonlineacademy" data-layout="full" data-count="default"></div> -->
+                      <!-- End of Youtube -->
+                   <!--  </div>
+                  </div> -->
+                <!-- End of Social Links -->
           </div>
         <!-- End of SideBar -->
 
