@@ -11,7 +11,8 @@ from .forms import UserForm
 from datetime import datetime
 
 from .choices import FEEDBACK_RATING
-from .models import Post, Feedback, Contact, Advertisement, Courses
+from .models import Post, Feedback, Contact, Advertisement
+from quiz.models import Course
 
 
 # Home Page
@@ -79,7 +80,7 @@ def current_affairs_view(request):
 # Admissions Page
 def courses_view(request):
 	""" Courses Page """
-	courses = Courses.objects.all()
+	courses = Course.objects.all()
 	return render(request, 'main/courses.html', {'courses':courses})
 
 # Policies/Staffs Page
@@ -156,7 +157,7 @@ def login_view(request):
 		form = AuthenticationForm(request=request, data=request.POST)
 		if form.is_valid():
 			username = form.cleaned_data.get('username')
-			password = form.cleaned_data.get('password1')
+			password = form.cleaned_data.get('password')
 			print("username : " + username)
 			user = authenticate(username=username, password=password)
 			if user is not None:
@@ -173,4 +174,4 @@ def login_view(request):
 def logout_view(request):
 	logout(request)
 	messages.success(request, 'Logout successfully!')
-	return redirect('main:url_home')
+	return redirect('main:url_login')

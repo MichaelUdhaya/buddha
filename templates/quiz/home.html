@@ -1,0 +1,107 @@
+{% extends 'quiz/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+  {% block title %}
+      Online Quiz - Buddha Academy
+  {% endblock %}
+<!-- End of Title Name -->
+
+{% block body %}
+<div class="home-box">
+  <center>
+  	{% if user.is_authenticated %}
+  		{% if not user.profile.photo %}
+  			{% if user.profile.gender == 'male' %}
+  				<img src="{% static 'quiz/images/logo/male.png' %}" class="profile-img">
+  			{% else %}
+  				<img src="{% static 'quiz/images/logo/female.png' %}" class="profile-img">
+  			{% endif %}
+  		{% else %}
+  			<img src="{{ user.profile.photo.url }}" class="profile-img">
+  		{% endif %}
+  	{% else %}
+  		<img src="{% static 'quiz/images/logo/q-logo.png' %}" class="profile-img">
+  	{% endif %}
+  </center>
+  <br>
+  <h1 style="color: darkblue;">Welcome To Online Quiz Program</h1>
+  <h5 style="color: indigo;">Buddha Online Academy</h5>
+  <br>
+  <!-- main button -->
+    <a href="{% url 'main:url_home' %}" class="btn btn-outline-dark" style="margin: 25px;">
+      <i class="fas fa-home"></i> Back to Home
+    </a>
+
+    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
+      <i class="fas fa-book"></i> View all coures
+    </button>
+
+    <a href="{% url 'quiz:url_dashboard' %}" class="btn btn-outline-success" style="margin: 25px;">
+      <i class="fas fa-book"></i> Dashboard
+    </a>
+  <!-- End of main button -->
+
+  {% if not user.is_authenticated %}
+	  <br><br>
+	<!--   <span class="text-danger">*You must login to take Quiz</span><br>
+	  <a href="{% url 'main:url_login' %}" class="btn btn-danger">Login</a> -->
+    <div class="alert alert-danger alert-dismissible fade show">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      *You must login to take Quiz <a href="{% url 'main:url_login' %}" class="alert-link ml-2">
+        <span class="btn btn-danger btn-sm"> Login </span></a>
+    </div>
+  {% endif %}
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">All Coures</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body" style="padding: 15px 80px;">
+       <h4 class="text-center">TNPSC GROUP I , II & IIA முதன்மை தேற்விற்கான அட்டவணை</h4>
+	    <hr>
+	      <table class="table table-danger table-striped table-bordered table-hover">
+	        <thead class="text-center bg-warning">
+	          <tr>
+	            <th>தேர்வு எண்</th>
+	            <th>தேதி</th>
+	            <th>பாடத்திட்டம் (SYALLUBUS)</th>
+	          </tr>
+	        </thead>
+	        <tbody class="text-center">
+	          {% for course in all_course %}
+	          	{% if forloop.counter|divisibleby:2 %}
+		          <tr class="table-active">
+		        {% else %}
+		          <tr>
+		        {% endif %}
+		            <td><b>{{ course.exam_number }}</b></td>
+		            <td>{{ course.exam_date }}</td>
+		            <td><a href="{% url 'quiz:url_take_quiz' pk=course.pk %}">{{ course.syallbus|safe }}</a></td>
+		          </tr>
+	          {% endfor %}
+	        </tbody>
+	      </table>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-close"></i> Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- end of modal -->
+
+
+{% endblock %}

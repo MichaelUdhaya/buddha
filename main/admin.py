@@ -6,7 +6,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-from .models import Post, Feedback, Courses, Contact, Advertisement, Profile
+from .models import Post, Feedback, Contact, Advertisement, Profile
 
 
 class ProfileInline(admin.StackedInline):
@@ -56,18 +56,13 @@ class PostAdmin(admin.ModelAdmin):
 		models.TextField: {'widget': TinyMCE()},
 		}
 
-class CourseAdmin(admin.ModelAdmin):
-	formfield_overrides = {
-		models.TextField: {'widget': TinyMCE()},
-		}
-
 
 # Register your models here.
 admin.site.register(Post, PostAdmin)
 admin.site.register(Feedback)
 admin.site.register(Contact)
 admin.site.register(Advertisement)
-admin.site.register(Courses, CourseAdmin)
+
 
 #User models override
 admin.site.unregister(User)

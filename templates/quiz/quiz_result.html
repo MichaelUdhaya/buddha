@@ -1,0 +1,80 @@
+{% extends 'quiz/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+  {% block title %}
+      Quiz Results
+  {% endblock %}
+<!-- End of Title Name -->
+
+{% block body %}
+
+<nav class="navbar navbar-expand-sm bg-warning text-light navbar-light fixed-top">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="{% url 'main:url_home' %}">Buddha Onlice Academy</a>
+    </li>
+  </ul>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'quiz:url_quiz' %}"><i class="fas fa-home"></i> Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'quiz:url_dashboard' %}"><i class="fas fa-sign-out-alt"></i> Exit</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container card quiz-box">
+
+{% if result_status == "Pass" %}
+<div class="alert alert-success">
+  <b>{{ result_status }}</b> - You scored {{ marks }} out of {{ total_marks }} <strong class="float-right">{{ percentage }}%</strong>
+</div>
+{% else %}
+<div class="alert alert-danger">
+  <b>{{ result_status }}</b> - You scored {{ marks }} out of {{ total_marks }} <strong class="float-right">{{ percentage }}%</strong>
+</div>
+{% endif %}
+
+{% for result in results %}
+  {% if result.Status %}
+    <div class="card question-box" style="border-right: 2px solid darkgreen; border-left: 2px solid darkgreen;">
+  {% else %}
+    <div class="card question-box" style="border-right: 2px solid red; border-left: 2px solid red;">
+  {% endif %}
+      <b>{{ forloop.counter }}) {{ result.Question|safe }}</b>
+      <span class="choice-box">
+        <span>Correct Answer is : {{ result.Answer }}</span><br>
+          {% if result.Status %}
+            <span class="text-success">
+              <i>Your Answer is : {{ result.User_Answer }}</i>
+            </span>
+          {% else %}
+            <span class="text-danger">
+              <i>Your Answer is : {{ result.User_Answer }}</i>
+            </span>
+          {% endif %}
+      </span>
+    </div>
+
+
+{% endfor %}
+
+<div class="btn-group mt-3">
+  <a href="{% url 'quiz:url_dashboard' %}" class="mr-2">
+    <button type="button" class="btn btn-primary"><i class="fas fa-chart-area"></i> Goto Dashboard</button>
+  </a>
+    <a href="{% url 'main:url_home' %}" class="mr-2">
+    <button type="button" class="btn btn-warning"><i class="fas fa-home"></i> Buddha Main</button>
+  </a>
+  <a href="{% url 'quiz:url_quiz' %}" class="mr-2">
+    <button type="button" class="btn btn-danger"><i class="fas fa-close"></i> Close</button>
+  </a>
+</div>
+
+</div>
+
+
+{% endblock %}
+

@@ -1,0 +1,289 @@
+{% extends 'quiz/base.html' %}
+{% load static %}
+
+<!-- Title Name -->
+  {% block title %}
+      Live Quiz
+  {% endblock %}
+<!-- End of Title Name -->
+
+{% block body %}
+
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-warning">
+    <a class="navbar-brand" href="{% url 'quiz:url_dashboard' %}">Dashboard</a>
+    <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        <li class="nav-item {% block nav-courses %}{% endblock %}">
+          <a class="nav-link" href="{% url 'quiz:url_quiz' %}">
+          <i class="fas fa-home"></i> Home</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item disabled" href="#">
+                    <i class="fas fa-edit"></i> Edit Profile
+                </a>
+                <!-- <a class="dropdown-item" href="#">Activity Log</a> -->
+                <!-- <div class="dropdown-divider"></div> -->
+                {% if user.is_authenticated %}
+                    <a class="dropdown-item" href="{% url 'main:url_logout' %}">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                {% else %}
+                    <a class="dropdown-item disabled">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                {% endif %}
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<main>
+    <div class="container-fluid">
+        {% if user.username %}
+            <div class="card mb-4 mt-4">
+                <div class="row">
+                    
+                        <div class="col-xl-10">
+                            <div class="card dash-head">
+                                <div class="card-body">
+                                    <h1 style="border-bottom: 1px solid grey;" class="mb-4">
+                                    {{ user.last_name }}, {{ user.first_name }}</h1>
+                                    <span class="text-muted">
+                                        <h5 style="text-transform: uppercase" class="ml-3"><i class="fas fa-mail-bulk"></i> 
+                                        &nbsp{% if user.email %}{{ user.email }}{% else %}N/A{% endif %}</h5>
+                                        <h5 style="text-transform: uppercase" class="ml-3"><i class="fas fa-phone"></i> 
+                                        &nbsp{{ user.profile.mobile }}</h5>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2">
+                            <div class="card" style="border: none; ">
+                                <div class="card-body">
+                                    <center>
+                                        <img src="{{ user.profile.photo.url }}" class="profile-img">
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-danger mt-2">
+                *You must login to take Quiz <a href="{% url 'main:url_login' %}" class="alert-link ml-2">> Login <</a>
+            </div>
+        {% endif %}
+                
+        <div class="row text-center mt-1">
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">Quiz Attempt Count : <b>{{ total_count }}</b></div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-warning text-white mb-4">
+                    <div class="card-body">Best Score : <b>{{ max_count }}</b></div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">No of Passes : <b>{{ pass_count }}</b></div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-danger text-white mb-4">
+                    <div class="card-body">No of Fails : <b>{{ fail_count }}</b></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="far fa-address-card mr-1"></i>
+                        Personal Informations
+                    </div>
+                    <div class="card-body">
+                        <!-- <canvas id="myAreaChart" width="100%" height="40"></canvas> -->
+                        <table width="100%">
+                            <tr>
+                                <td>DOB</td>
+                                <td>: {{ user.profile.dob }}</td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td>: 
+                                    {% if user.profile.gender == 1 %}
+                                    Male
+                                {% elif user.profile.gender == 2 %}
+                                    Female
+                                {% else %}
+                                    Not Specified
+                                {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>: {{ user.profile.street }} {{ user.profile.city }}, {{ user.profile.state }}</td>
+                            </tr>
+                            <tr>
+                                <td>Qulification</td>
+                                <td>: 
+                                    {% if user.profile.qulification %}
+                                        {{ user.profile.qulification }}
+                                    {% else %}
+                                        Not Specified
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-globe-asia mr-1"></i>
+                        Other Informations
+                    </div>
+                    <div class="card-body">
+                        <!-- <canvas id="myBarChart" width="100%" height="40"></canvas> -->
+                        <table width="100%">
+                            <tr>
+                                <td>Status</td>
+                                <td>: {{ user.is_active }}</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Join</td>
+                                <td>: {{ user.date_joined }}</td>
+                            </tr>
+                            <tr>
+                                <td>Last Login</td>
+                                <td>: {{ user.last_login }}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>: 
+                                    {% if user.is_active %}
+                                        <span class="text-success">Active</span>
+                                    {% else %}
+                                        <span class="text-danger">Inactive</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Quiz History
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                        <thead style="background: yellowgreen;">
+                            <tr>
+                                <th>S. No</th>
+                                <th>Quiz Name</th>
+                                <th>Date</th>
+                                <th>Score</th>
+                                <th>Timing</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if dashboard %}
+                                {% for data in dashboard %}
+                                <tr>
+                                    <td><b>{{ forloop.counter }}</b></td>
+                                    <td>{{ data.quiz_name|safe }}</td>
+                                    <td>{{ data.quiz_date }}</td>
+                                    <td>{{ data.quiz_score }}</td>
+                                    <td>{{ data.quiz_timing }}</td>
+                                    <td style="font-weight: bold;">
+                                        {% if data.quiz_result == 'Pass' %}
+                                            <span class="text-success">{{ data.quiz_result }}</span>
+                                        {% else %}
+                                            <span class="text-danger">{{ data.quiz_result }}</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr><td colspan="6">No Data Available!</td></tr>
+                            {% endif %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination -->
+                    {% if dashboard.has_other_pages %}
+                      <nav aria-label="...">
+                        <ul class="pagination">
+                          <!-- previous page -->
+                            {% if dashboard.has_previous %}
+                              <li class="page-item">
+                                <a class="page-link" href="?page={{ dashboard.previous_page_number }}">Previous
+                                </a>
+                              </li>
+                            {% else %}
+                              <li class="page-item disabled">
+                                <span class="page-link">Previous</span>
+                              </li>
+                            {% endif %}
+                          <!-- End of previous page -->
+
+                        <!-- Page numbers -->
+                          {% for i in dashboard.paginator.page_range %}
+                            {% if dashboard.number == i %}
+                              <li class="page-item active">
+                                <span class="page-link">{{ i }}
+                                  <span class="sr-only">(current)</span>
+                                </span>
+                              </li>
+                            {% else %}
+                              <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                            {% endif %}
+                          {% endfor %}
+                        <!-- End of Page numbers -->
+
+                        <!-- Next page -->
+                          {% if dashboard.has_next %}
+                            <li class="page-item">
+                              <a class="page-link" href="?page={{ dashboard.next_page_number }}">Next</a>
+                            </li>
+                          {% else %}
+                            <li class="page-item disabled">
+                              <span class="page-link">Next</span>
+                            </li>
+                          {% endif %}
+                        <!-- End of Next page -->
+                        </ul>
+                      </nav>
+                    {% endif %}
+                <!-- End of Pagination -->
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="py-4 bg-light mt-auto">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Your Website 2020</div>
+            <div>
+                <a href="#">Privacy Policy</a>
+                &middot;
+                <a href="#">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+{% endblock %}
+
+

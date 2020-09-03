@@ -44,7 +44,7 @@
           <tr>
             <td>{{ course.exam_number }}</td>
             <td>{{ course.exam_date }}</td>
-            <td>{{ course.syallbus|safe }}</td>
+            <td><a href="{% url 'quiz:url_take_quiz' pk=course.pk %}">{{ course.syallbus|safe }}</a></td>
           </tr>
           {% endfor %}
         </tbody>

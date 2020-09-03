@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'tinymce',
     'widget_tweaks',
     'main.apps.MainConfig',
+    'quiz.apps.QuizConfig',
 ]
 
 MIDDLEWARE = [

@@ -18,10 +18,11 @@ class Profile(models.Model):
     gender = models.PositiveSmallIntegerField(choices=choices.GENDER, null=False, blank=False, default=3)
     mobile = models.CharField(max_length=15, blank=False)
     street = models.CharField(max_length=250, blank=True)
-    city = models.CharField(max_length=50, blank=True)
+    city = models.CharField(max_length=50, default='Chennai', blank=True)
     state = models.CharField(max_length = 150, choices = choices.INDIAN_STATES, default = 'TN') 
     qulification = models.CharField(max_length=60, blank=True)
     preparing_exam_from = models.DateField(default=datetime.now)
+    photo = models.ImageField(upload_to='users/%Y%m%d/', blank=True)
 
     def __str__(self):  # __unicode__ for Python 2
         return self.user.username
@@ -77,11 +78,3 @@ class Advertisement(models.Model):
 
 	def __str__(self):
 		return str(self.ad_name)
-
-class Courses(models.Model):
-	exam_number = models.IntegerField()
-	exam_date = models.DateField(default=datetime.now)
-	syallbus = models.TextField(default='N/A')
-
-	def __str__(self):
-		return str(self.exam_number) + ' - ' + str(self.exam_date)

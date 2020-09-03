@@ -13,7 +13,8 @@ class UserForm(UserCreationForm):
 	city = forms.CharField(max_length=50, required=False)
 	qulification = forms.CharField(max_length=60, help_text="Enter your qulification here!")
 	preparing_exam_from = forms.DateField(required=True, help_text='Required. Format: YYYY-MM-DD')
+	photo = forms.ImageField(required=False, error_messages = {'invalid':("Image files only")}, widget=forms.FileInput)
 
 	class Meta:
 		model = User
-		fields = ("username", "first_name", "last_name", "birth_date", "mobile", "email", "street", "city", "qulification", "preparing_exam_from", "password1", "password2")
+		fields = ("username", "first_name", "last_name", "birth_date", "mobile", "email", "street", "city", "qulification", "preparing_exam_from", "photo", "password1", "password2")
