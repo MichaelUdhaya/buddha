@@ -87,14 +87,19 @@
           <a class="nav-link" href="{% url 'main:url_courses' %}">
           <i class="fas fa-portrait"></i> Courses</a>
         </li>
+        <li class="nav-item {% block nav-post %}{% endblock %}">
+          <a class="nav-link" href="{% url 'main:url_post_list' %}">
+          <i class="fas fa-bullhorn"></i> Posts</a>
+        </li>
         <!--
         <li class="nav-item {% block nav-policies %}{% endblock %}">
           <a class="nav-link" href="{% url 'main:url_policies' %}">Policies</a>
         </li>
-        <li class="nav-item {% block nav-gallery %}{% endblock %}">
+      -->
+        <li class="nav-item {% block nav-videos %}{% endblock %}">
           <a class="nav-link" href="{% url 'main:url_gallery' %}">
-          <i class="fas fa-images"></i> Gallery</a>
-        </li> -->
+          <i class="fas fa-video"></i> Videos</a>
+        </li>
         <li class="nav-item {% block nav-about-us %}{% endblock %}">
           <a class="nav-link" href="{% url 'main:url_about_us' %}">
           <i class="fas fa-info-circle"></i> About Us</a>

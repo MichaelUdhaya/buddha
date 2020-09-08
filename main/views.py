@@ -11,13 +11,13 @@ from .forms import UserForm
 from datetime import datetime
 
 from .choices import FEEDBACK_RATING
-from .models import Post, Feedback, Contact, Advertisement
+from .models import Post, Feedback, Contact, Advertisement, Playlist, Videos
 from quiz.models import Course
 
 
 # Home Page
 def home_view(request):
-	""" Home Page of school site """
+	""" Home Page """
 
 	#get the recent post
 	recent_post_count = Post.objects.count()
@@ -34,7 +34,7 @@ def home_view(request):
 	context = {
 		'post' : post,
 		'post_lists' : post_lists,
-		'ads' : ads
+		'ads' : ads,
 	}
 
 	return render(request, 'main/index.html', context)
@@ -73,7 +73,7 @@ def post_list(request):
 
 # Facilities Page
 def current_affairs_view(request):
-	""" Facilities Page of school site """
+	""" Facilities Page """
 	posts = Post.objects.all()
 	return render(request, 'main/current_affairs.html', {})
 
@@ -85,25 +85,31 @@ def courses_view(request):
 
 # Policies/Staffs Page
 def policies_view(request):
-	""" Policies/Staffs Page of school site """
+	""" Policies/Staffs Page """
 	#Get the last updated object's pk and pass to it
 	# policy = Policy.objects.filter(pk=Policy.objects.count())
 	return render(request, 'main/policies.html', {'policy':'policy'})
 
 # Gallery Page
 def gallery_view(request):
-	""" Policies/Staffs Page of school site """
-	return render(request, 'main/working.html', {})
+	""" Gallery Page """
+	playlist = Playlist.objects.order_by('-id')
+
+	context = {
+		'playlist' : playlist,
+	}
+
+	return render(request, 'main/gallery.html', context)
 
 # About Us Page
 def about_us_view(request):
-	""" About Us Page of school site """
+	""" About Us Page """
 	posts = Post.objects.all()
 	return render(request, 'main/about.html', {})
 
 # Contact Us Page
 def contact_us_view(request):
-	""" About Us Page of school site """
+	""" About Us Page"""
 	contact = Contact.objects.filter(pk=Contact.objects.count())
 	return render(request, 'main/contact-us.html', {'contact':contact})
 

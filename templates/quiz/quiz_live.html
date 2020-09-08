@@ -121,6 +121,7 @@
 <!-- <b id="UserAnswers"></b> -->
 
 <form id="res-form" action="{% url 'quiz:url_quiz_result' pk=course.id %}">
+  {% csrf_token %}
   <div id="res-content"></div>
 </form>
 

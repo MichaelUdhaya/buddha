@@ -43,10 +43,9 @@
         {% if user.username %}
             <div class="card mb-4 mt-4">
                 <div class="row">
-                    
-                        <div class="col-xl-10">
+                        <div class="col-sm-10">
                             <div class="card dash-head">
-                                <div class="card-body">
+                                <!-- <div class="card-body"> -->
                                     <h1 style="border-bottom: 1px solid grey;" class="mb-4">
                                     {{ user.last_name }}, {{ user.first_name }}</h1>
                                     <span class="text-muted">
@@ -55,10 +54,10 @@
                                         <h5 style="text-transform: uppercase" class="ml-3"><i class="fas fa-phone"></i> 
                                         &nbsp{{ user.profile.mobile }}</h5>
                                     </span>
-                                </div>
+                                <!-- </div> -->
                             </div>
                         </div>
-                        <div class="col-xl-2">
+                        <div class="col-sm-2">
                             <div class="card" style="border: none; ">
                                 <div class="card-body">
                                     <center>
@@ -273,12 +272,12 @@
 <footer class="py-4 bg-light mt-auto">
     <div class="container-fluid">
         <div class="d-flex align-items-center justify-content-between small">
-            <div class="text-muted">Copyright &copy; Your Website 2020</div>
-            <div>
+            <div class="text-muted"><a href="#">Buddha Online Academy</a> - Since 2020</div>
+           <!--  <div>
                 <a href="#">Privacy Policy</a>
                 &middot;
                 <a href="#">Terms &amp; Conditions</a>
-            </div>
+            </div> -->
         </div>
     </div>
 </footer>

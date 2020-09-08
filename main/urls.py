@@ -6,8 +6,8 @@ app_name = 'main'  # here for namespacing of urls.
 
 urlpatterns = [
     path('', views.home_view, name='url_home'),
-    path('annoncement/<int:pk>/', views.post_view, name='url_post'),
-    path('annoncements/', views.post_list, name='url_post_list'),
+    path('post/<int:pk>/', views.post_view, name='url_post'),
+    path('all-posts-list/', views.post_list, name='url_post_list'),
     path('current-affairs/', views.current_affairs_view, name='url_current_affairs'),
     path('courses/', views.courses_view, name='url_courses'),
     path('policies-staffs/', views.policies_view, name='url_policies'),

@@ -4,9 +4,9 @@
 <!-- Title Name -->
 {% block title %}
   {% if post %}
-    {{ post.post_title }} | Annoncements 
+    {{ post.post_title }} | Posts 
   {% else %}
-    No Annoncements
+    No Posts
   {% endif %}
 {% endblock %}
 <!-- End of Title Name -->
@@ -16,11 +16,14 @@
 <!-- Body Start -->
   <div class="body-container">
 
-    <!-- Page Header -->
+    <!-- Page Header
       <div class="page-header-box-left">
-        Annoncement
+        Posts
       </div>
-    <!-- End of Page Header -->
+    End of Page Header -->
+
+    <hr style="background-color:#8B0000" class="mb-4">
+
 
     <!-- body content -->
     <div class="row">
@@ -29,7 +32,7 @@
         <!-- Breadcrumbs -->
           <ul class="breadcrumb">
             <li><a href="{% url 'main:url_home' %}">Home</a></li>
-            <li><a href="{% url 'main:url_post_list' %}">Annoncements</a></li>
+            <li><a href="{% url 'main:url_post_list' %}">Posts</a></li>
             <li>{% if post %}{{ post.post_title }}{% else %}N/A{% endif %}</li>
           </ul>
         <!-- End of Breadcrumbs -->

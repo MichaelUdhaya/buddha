@@ -6,7 +6,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
-from .models import Post, Feedback, Contact, Advertisement, Profile
+from .models import Post, Feedback, Contact, Advertisement, Profile, Playlist, Videos
 
 
 class ProfileInline(admin.StackedInline):
@@ -62,6 +62,8 @@ admin.site.register(Post, PostAdmin)
 admin.site.register(Feedback)
 admin.site.register(Contact)
 admin.site.register(Advertisement)
+admin.site.register(Playlist)
+admin.site.register(Videos)
 
 
 #User models override

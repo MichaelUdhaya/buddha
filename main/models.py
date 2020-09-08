@@ -10,6 +10,7 @@ from main import choices
 
 #utility
 from datetime import datetime
+import urllib
 
 class Profile(models.Model):
     
@@ -78,3 +79,28 @@ class Advertisement(models.Model):
 
 	def __str__(self):
 		return str(self.ad_name)
+
+class Playlist(models.Model):
+    
+    name = models.CharField(max_length=100, blank=False, help_text='Must be less than 100 characters')
+
+    def __str__(self):
+        return self.name
+
+class Videos(models.Model):
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100, blank=False, help_text='Must be less than 100 characters')
+    url = models.URLField(max_length=200, null=False, blank=False)
+    playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
+
+
+    def _get_youtube_id(self):
+        "Get video id from url. get values after 'v='. Returns the youtube id"
+        parsed_url = urllib.parse.urlparse(self.url)
+        video_id = urllib.parse.parse_qs(parsed_url.query).get('v')
+        return str(video_id[0])
+    youtube_id = property(_get_youtube_id)
+
+    def __str__(self):
+        return self.title

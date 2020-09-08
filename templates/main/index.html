@@ -163,7 +163,12 @@
                 <img src="{% static 'main/images/gif/new.gif' %}"></span></h6>
               </div>
               <div id="Courses" class="collapse" style="padding: 15px;">
-                There are no course available!
+                {% if post_published %}
+                  
+                {% else %}
+                  There are no course available!
+                {% endif %}
+                
               </div>
               <!-- End of Circular -->
 
